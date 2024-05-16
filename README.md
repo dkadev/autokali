@@ -56,13 +56,13 @@ sudo ./autokali.sh --install
 ### Only customize the desktop
 
 ```sh
-sudo ./autokali.sh --install customization
+sudo ./autokali.sh --install desktop
 ```
 
 ### Only install the tools
 
 ```sh
-sudo ./autokali.sh --install apps
+sudo ./autokali.sh --install tools
 ```
 
 At the beginning, it will prompt for some data for the installation process, the rest of the execution should be performed automatically without requiring user interaction. If any installation step fails, an error log file **error.log** is stored so that these errors can be manually resolved later.
