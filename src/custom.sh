@@ -98,7 +98,7 @@ function customTerminal(){
     git clone https://github.com/owerdogan/wallpapers-for-kali /usr/share/backgrounds/wallpapers-for-kali > /dev/null 2>&1
 	check "Configurando fondos"
 	unlink /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
-	ln -s /usr/share/backgrounds/wallpapers-for-kali/kali-red/red-kali-dark-16x9.png /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
+	ln -s /usr/share/backgrounds/wallpapers-for-kali/kali-red/red-kali16x9.png /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
 	check "Configurando inicio de sesión"
 	cp $FILES_PATH/xfce4/xfce4-desktop.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml 2>/dev/null
