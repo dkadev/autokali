@@ -201,28 +201,6 @@ function customTerminal(){
 	chown $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/helpers.rc 2>/dev/null
 	check "Configurando aplicativos por default"
 
-	info "Configuracion de notificaciones"
-	sudo apt remove xfce4-notifyd -y > /dev/null 2>&1
-	cd /tmp/ && wget https://raw.githubusercontent.com/dunst-project/dunst/master/dunstrc > /dev/null 2>&1
-	mkdir -p $HOME_PATH/.config/dunst  2>/dev/null
-	mv /tmp/dunstrc  $HOME_PATH/.config/dunst/ && chown -R $USERNAME:$USERNAME $HOME_PATH/.config/dunst > /dev/null 2>&1
-	check "Notificaciones personalizadas"
-
-	info "Configurar smb.conf"
-	cat /etc/samba/smb.conf | sed 's/\[global\]/\[global\]\n   client min protocol = CORE\n   client max protocol = SMB3\n''/' > /tmp/fix_smbconf.tmp 2> /dev/null
-	cat /tmp/fix_smbconf.tmp > /etc/samba/smb.conf
-	check "Actualizando smb.conf"
-
-	info "Configurar GRUB"
-	cat /etc/default/grub | sed 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet"/GRUB_CMDLINE_LINUX_DEFAULT="quiet mitigations=off"/' > /tmp/fix_grub.tmp 2> /dev/null
-	cat /tmp/fix_grub.tmp > /etc/default/grub 2> /dev/null
-	update-grub &>/dev/null
-	check "Actualizando GRUB"
-
-	info "Configurando SNMP.conf"
-	perl -pi -e "s[mibs :][#mibs :]" /etc/snmp/snmp.conf
-	check "Actualizando SNMP.conf"
-
     info "Instalando Oh-My-Zsh"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
