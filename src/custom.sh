@@ -66,10 +66,6 @@ function customTerminal(){
 	dpkg -i /tmp/bat.deb > /dev/null 2>&1
 	check "Instalación de bat"
 
-	info "Instalando comando fd"
-	ln -s $(which fdfind) /usr/local/bin/fd > /dev/null 2>&1
-	check "Configurar comando fd"
-
 	cd $HOME_PATH
 
 	info "Configurando findex"
