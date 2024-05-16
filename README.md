@@ -39,6 +39,12 @@ Also automates some config by downloading a dotfiles repository.
     sudo reboot
     ```
 
+4. Install Oh My Zsh:
+
+    ```bash
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+    ```
+
 ## Usage
 
 ### Full installation

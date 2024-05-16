@@ -21,9 +21,6 @@ function customTerminal(){
 	usermod --shell /usr/bin/zsh $USERNAME > /dev/null 2>&1
 	check "Aplicando shell predeterminada para $USERNAME"
 
-    info "Instalando Oh-My-Zsh"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended --keep-zshrc > /dev/null 2>&1
-
     info "Instalando powerlevel10k"
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k > /dev/null 2>&1
     check "Clonando el repositorio de powerlevel10k"
@@ -140,7 +137,7 @@ function customTerminal(){
     # Configuración de iconos
 	cd $FILES_PATH/xfce4 2>/dev/null
 	tar -xJf 05-Flat-Remix-Black-20240201.tar.xz > /dev/null 2>&1
-	mkdir $HOME_PATH/.local/share/icons && mv $FILES_PATH/xfce4/Flat-Remix-Black $HOME_PATH/.local/share/icons > /dev/null 2>&1
+	mkdir $HOME_PATH/.local/share/icons && mv $FILES_PATH/xfce4/Flat-Remix-Black-Dark $HOME_PATH/.local/share/icons > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.local/share/icons 2>/dev/null
 	check "Configurando iconos ($USERNAME)"
 	mkdir -p /root/.local/share && ln -s $HOME_PATH/.local/share/icons /root/.local/share/icons 2>/dev/null
