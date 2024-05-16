@@ -127,7 +127,7 @@ function customTerminal(){
 	cp $FILES_PATH/xfce4/xsettings.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml 2>/dev/null
 	check "Configurando iconos en el sistema"
-	gtk-update-icon-cache $HOME_PATH/.local/share/icons/Flat-Remix-Black > /dev/null 2>&1
+	gtk-update-icon-cache $HOME_PATH/.local/share/icons/Flat-Remix-Black-Dark > /dev/null 2>&1
 	check "Actualizando iconos"
 
     # Configuración de la barra de tareas
