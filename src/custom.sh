@@ -121,8 +121,8 @@ function customTerminal(){
 
     # Configuración de iconos
 	cd $FILES_PATH/xfce4 2>/dev/null
-	tar -xJf Sweet-Rainbow.tar.xz && tar -xJf candy-icons.tar.xz > /dev/null 2>&1
-	mkdir $HOME_PATH/.local/share/icons && mv $FILES_PATH/xfce4/Sweet-Rainbow $FILES_PATH/xfce4/candy-icons $HOME_PATH/.local/share/icons > /dev/null 2>&1
+	tar -xJf 05-Flat-Remix-Black-20240201.tar.xz > /dev/null 2>&1
+	mkdir $HOME_PATH/.local/share/icons && mv $FILES_PATH/xfce4/Flat-Remix-Black $HOME_PATH/.local/share/icons > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.local/share/icons 2>/dev/null
 	check "Configurando iconos ($USERNAME)"
 	mkdir -p /root/.local/share && ln -s $HOME_PATH/.local/share/icons /root/.local/share/icons 2>/dev/null
@@ -130,7 +130,7 @@ function customTerminal(){
 	cp $FILES_PATH/xfce4/xsettings.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml 2>/dev/null
 	check "Configurando iconos en el sistema"
-	gtk-update-icon-cache $HOME_PATH/.local/share/icons/Sweet-Rainbow > /dev/null 2>&1 && gtk-update-icon-cache $HOME_PATH/.local/share/icons/candy-icons > /dev/null 2>&1
+	gtk-update-icon-cache $HOME_PATH/.local/share/icons/Flat-Remix-Black > /dev/null 2>&1
 	check "Actualizando iconos"
 
     # Configuración de la barra de tareas
