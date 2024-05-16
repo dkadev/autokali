@@ -17,6 +17,7 @@ function customTerminal(){
 	unzip -fo Hack.zip > /dev/null 2>&1
 	check "Instalando la fuente Hack Nerd Font"
 	rm Hack.zip 2>/dev/null
+    cd $HOME_PATH
 
     # Dotfiles
     info "Descargando dotfiles"
@@ -29,7 +30,7 @@ function customTerminal(){
     stow --adopt zsh > /dev/null 2>&1
     stow oh-my-zsh > /dev/null 2>&1
     stow terminator > /dev/null 2>&1
-    cd
+    cd $HOME_PATH
 
     info "Instalando powerlevel10k"
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME_PATH/.oh-my-zsh/custom}/themes/powerlevel10k > /dev/null 2>&1
@@ -65,7 +66,7 @@ function customTerminal(){
 	ln -s $(which fdfind) /usr/local/bin/fd > /dev/null 2>&1
 	check "Configurar comando fd"
 
-	cd
+	cd $HOME_PATH
 
 	info "Instalando FZF"
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf > /dev/null 2>&1
