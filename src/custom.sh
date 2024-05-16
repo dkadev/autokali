@@ -7,6 +7,9 @@ function customTerminal(){
 	info "Actualizando repositorios"
 	apt update > /dev/null 2>&1
 
+    info "Instalando Terminator"
+    apt install terminator -y > /dev/null 2>&1
+
 	info "Descargando fuente (Hack Nerd Font)"
 	cd /usr/local/share/fonts/ 2>/dev/null
 	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip > /dev/null 2>&1
@@ -14,22 +17,6 @@ function customTerminal(){
 	unzip -fo Hack.zip > /dev/null 2>&1
 	check "Instalando la fuente Hack Nerd Font"
 	rm Hack.zip 2>/dev/null
-
-	info "Configurando shell predeterminada"
-	usermod --shell /usr/bin/zsh root > /dev/null 2>&1
-	check "Aplicando shell predeterminada para root"
-	usermod --shell /usr/bin/zsh $USERNAME > /dev/null 2>&1
-	check "Aplicando shell predeterminada para $USERNAME"
-
-    info "Instalando powerlevel10k"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k > /dev/null 2>&1
-    check "Clonando el repositorio de powerlevel10k"
-	cp $FILES_PATH/.p10k.zsh $HOME_PATH/.p10k.zsh 2>/dev/null
-    chown $USERNAME:$USERNAME $HOME_PATH/.p10k.zsh 2>/dev/null
-	check "Agregando el p10k.zsh"
-
-    info "Instalando Terminator"
-    apt install terminator -y > /dev/null 2>&1
 
     # Dotfiles
     info "Descargando dotfiles"
@@ -43,6 +30,13 @@ function customTerminal(){
     stow oh-my-zsh > /dev/null 2>&1
     stow terminator > /dev/null 2>&1
     cd
+
+    info "Instalando powerlevel10k"
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k > /dev/null 2>&1
+    check "Clonando el repositorio de powerlevel10k"
+	cp $FILES_PATH/.p10k.zsh $HOME_PATH/.p10k.zsh 2>/dev/null
+    chown $USERNAME:$USERNAME $HOME_PATH/.p10k.zsh 2>/dev/null
+	check "Agregando el p10k.zsh"
 
 	info "Instalando lsd"
     if [ "$(uname -m)" = "x86_64" ]; then
@@ -90,9 +84,8 @@ function customTerminal(){
 
     # Configuración de escritorio
 	info "Configurando escritorio"
-	check "Descargando fondos kali"
     git clone https://github.com/owerdogan/wallpapers-for-kali /usr/share/backgrounds/wallpapers-for-kali > /dev/null 2>&1
-	check "Configurando fondos"
+	check "Descargando fondos kali"
 	unlink /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/wallpapers-for-kali/kali-red/red-kali16x9.jpg /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
 	check "Configurando inicio de sesión"
