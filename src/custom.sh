@@ -68,17 +68,6 @@ function customTerminal(){
 
 	cd $HOME_PATH
 
-	info "Instalando FZF"
-	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf > /dev/null 2>&1
-	check "Clonando el repositorio de FZF (root)"
-	echo -e "y\ny\nn" | ~/.fzf/install > /dev/null 2>&1
-	check "Instalar FZF (root)"
-	git clone --depth 1 https://github.com/junegunn/fzf.git $HOME_PATH/.fzf > /dev/null 2>&1
-	check "Clonando el repositorio de FZF ($USERNAME)"
-	chown -R $USERNAME:$USERNAME $HOME_PATH/.fzf 2>/dev/null
-	sudo -u $USERNAME $HOME_PATH/.fzf/install < <(echo -e "y\ny\nn") > /dev/null 2>&1
-	check "Instalar FZF ($USERNAME)"
-
 	info "Configurando findex"
 	wget https://github.com/mdgaziur/findex/releases/download/v0.8.1/findex-0.8.1-x86_64.tar.gz -O /tmp/findex-0.8.1-x86_64.tar.gz > /dev/null 2>&1
 	tar -xzf /tmp/findex-0.8.1-x86_64.tar.gz -C /tmp/ > /dev/null 2>&1
