@@ -26,7 +26,8 @@ function customTerminal(){
     info "Instalando stow"
     apt install stow -y > /dev/null 2>&1
     check "Aplicando dotfiles"
-    cd $HOME_PATH/.dotfiles
+    rm -rf .zshrc > /dev/null 2>&1
+    cd $HOME_PATH/.dotfiles > /dev/null 2>&1
     stow zsh > /dev/null 2>&1
     stow oh-my-zsh > /dev/null 2>&1
     stow terminator > /dev/null 2>&1
