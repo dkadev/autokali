@@ -209,6 +209,7 @@ function customTerminal(){
 
     info "Descargando dotfiles"
     git clone https://github.com/dkadev/dotfiles $HOME_PATH/.dotfiles
+    chown -R $USERNAME:$USERNAME $HOME_PATH/.dotfiles 2>/dev/null
     info "Instalando stow"
     apt install stow -y > /dev/null 2>&1
     check "Aplicando dotfiles"
