@@ -14,7 +14,7 @@ function customTerminal(){
 	cd /usr/local/share/fonts/ 2>/dev/null
 	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip > /dev/null 2>&1
 	check "Descargando la fuente - https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip"
-	unzip -fo Hack.zip > /dev/null 2>&1
+	unzip -o Hack.zip > /dev/null 2>&1
 	check "Instalando la fuente Hack Nerd Font"
 	rm Hack.zip 2>/dev/null
     cd $HOME_PATH
@@ -27,7 +27,7 @@ function customTerminal(){
     apt install stow -y > /dev/null 2>&1
     check "Aplicando dotfiles"
     cd $HOME_PATH/.dotfiles
-    stow --adopt zsh > /dev/null 2>&1
+    stow zsh > /dev/null 2>&1
     stow oh-my-zsh > /dev/null 2>&1
     stow terminator > /dev/null 2>&1
     cd $HOME_PATH
