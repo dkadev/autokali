@@ -4,21 +4,13 @@ AutoKali is a tool designed to automate the deployment of a custom environment o
 
 Also automates some config by downloading a dotfiles repository.
 
-## Download
-
-1. Clone this repository to your local machine.
-
-    ```bash
-    git clone https://github.com/dkadev/autokali
-    ```
-
-2. Open a terminal and navigate to the project directory and give the installation script execution permissions.
-
-    ```bash
-    cd autokali; chmod +x autokali.sh
-    ```
-
 ## Pre-installation steps
+
+0. Install Oh My Zsh (if not already installed):
+
+    ```bash
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    ```
 
 1. Create a new sudo user:
 
@@ -39,10 +31,18 @@ Also automates some config by downloading a dotfiles repository.
     sudo reboot
     ```
 
-4. Install Oh My Zsh:
+## Download
+
+1. Clone this repository to your local machine.
 
     ```bash
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+    git clone https://github.com/dkadev/autokali
+    ```
+
+2. Open a terminal and navigate to the project directory and give the installation script execution permissions.
+
+    ```bash
+    cd autokali; chmod +x autokali.sh
     ```
 
 ## Usage
@@ -50,19 +50,19 @@ Also automates some config by downloading a dotfiles repository.
 ### Full installation
 
 ```sh
-./autokali.sh --install
+sudo ./autokali.sh --install
 ```
 
 ### Only customize the desktop
 
 ```sh
-./autokali.sh --install customization
+sudo ./autokali.sh --install customization
 ```
 
 ### Only install the tools
 
 ```sh
-./autokali.sh --install apps
+sudo ./autokali.sh --install apps
 ```
 
 At the beginning, it will prompt for some data for the installation process, the rest of the execution should be performed automatically without requiring user interaction. If any installation step fails, an error log file **error.log** is stored so that these errors can be manually resolved later.
