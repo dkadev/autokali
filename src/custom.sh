@@ -24,11 +24,9 @@ function customTerminal(){
     info "Instalando powerlevel10k"
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k > /dev/null 2>&1
     check "Clonando el repositorio de powerlevel10k"
-	cp -r $HOME_PATH/powerlevel10k /root/ 2>/dev/null
 	cp $FILES_PATH/.p10k.zsh $HOME_PATH/.p10k.zsh 2>/dev/null
-	check "Al encontrar y colocar el $FILES_PATH/.p10k.zsh"
-	ln -sf $HOME_PATH/.p10k.zsh /root/.p10k.zsh 2>/dev/null
-	check "Agregando el p10k.zsh en root"
+    chown $USERNAME:$USERNAME $HOME_PATH/.p10k.zsh 2>/dev/null
+	check "Agregando el p10k.zsh"
 
     info "Instalando Terminator"
     apt install terminator -y > /dev/null 2>&1
