@@ -34,6 +34,9 @@ function customTerminal(){
     info "Instalando powerlevel10k"
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME_PATH/.oh-my-zsh/custom}/themes/powerlevel10k > /dev/null 2>&1
     check "Clonando el repositorio de powerlevel10k"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME_PATH/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null 2>&1
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME_PATH/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting > /dev/null 2>&1
+    check "Instalando plugins de Oh My Zsh"
 	cp $FILES_PATH/.p10k.zsh $HOME_PATH/.p10k.zsh 2>/dev/null
     chown $USERNAME:$USERNAME $HOME_PATH/.p10k.zsh 2>/dev/null
 	check "Agregando el p10k.zsh"
