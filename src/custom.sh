@@ -223,6 +223,12 @@ function customTerminal(){
 	perl -pi -e "s[mibs :][#mibs :]" /etc/snmp/snmp.conf
 	check "Actualizando SNMP.conf"
 
+    info "Instalando Oh-My-Zsh"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+    info "Instalando Terminator"
+    apt install terminator -y > /dev/null 2>&1
+
     info "Descargando dotfiles"
     git clone https://github.com/dkadev/dotfiles $HOME_PATH/.dotfiles
     info "Instalando stow"
