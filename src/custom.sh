@@ -7,8 +7,11 @@ function customTerminal(){
 	info "Actualizando repositorios"
 	apt update > /dev/null 2>&1
 
-    info "Instalando Terminator"
+    info "Instalando paquetes necesarios"
     apt install terminator -y > /dev/null 2>&1
+    check "Instalando Terminator"
+    apt install fzf -y > /dev/null 2>&1
+    check "Instalando fzf"
 
 	info "Descargando fuente (Hack Nerd Font)"
 	cd /usr/local/share/fonts/ 2>/dev/null
