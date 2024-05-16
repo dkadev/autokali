@@ -11,7 +11,7 @@ function customTerminal(){
 	cd /usr/local/share/fonts/ 2>/dev/null
 	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip > /dev/null 2>&1
 	check "Descargando la fuente - https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip"
-	unzip Hack.zip > /dev/null 2>&1
+	unzip -fo Hack.zip > /dev/null 2>&1
 	check "Instalando la fuente Hack Nerd Font"
 	rm Hack.zip 2>/dev/null
 
