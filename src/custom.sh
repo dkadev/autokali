@@ -21,14 +21,32 @@ function customTerminal(){
 	usermod --shell /usr/bin/zsh $USERNAME > /dev/null 2>&1
 	check "Aplicando shell predeterminada para $USERNAME"
 
-	info "Instalando powerlevel10k"
-	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $HOME_PATH/powerlevel10k > /dev/null 2>&1
-	check "Clonando el repositorio de powerlevel10k"
+    info "Instalando Oh-My-Zsh"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended --keep-zshrc > /dev/null 2>&1
+
+    info "Instalando powerlevel10k"
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k > /dev/null 2>&1
+    check "Clonando el repositorio de powerlevel10k"
 	cp -r $HOME_PATH/powerlevel10k /root/ 2>/dev/null
 	cp $FILES_PATH/.p10k.zsh $HOME_PATH/.p10k.zsh 2>/dev/null
 	check "Al encontrar y colocar el $FILES_PATH/.p10k.zsh"
 	ln -sf $HOME_PATH/.p10k.zsh /root/.p10k.zsh 2>/dev/null
 	check "Agregando el p10k.zsh en root"
+
+    info "Instalando Terminator"
+    apt install terminator -y > /dev/null 2>&1
+
+    # Dotfiles
+    info "Descargando dotfiles"
+    git clone https://github.com/dkadev/dotfiles $HOME_PATH/.dotfiles  > /dev/null 2>&1
+    chown -R $USERNAME:$USERNAME $HOME_PATH/.dotfiles 2>/dev/null
+    info "Instalando stow"
+    apt install stow -y > /dev/null 2>&1
+    check "Aplicando dotfiles"
+    cd $HOME_PATH/.dotfiles
+    stow zsh > /dev/null 2>&1
+    stow oh-my-zsh > /dev/null 2>&1
+    stow terminator > /dev/null 2>&1
 
 	info "Instalando lsd"
     if [ "$(uname -m)" = "x86_64" ]; then
@@ -204,22 +222,4 @@ function customTerminal(){
 	cp $FILES_PATH/xfce4/helpers.rc $HOME_PATH/.config/xfce4/helpers.rc > /dev/null 2>&1
 	chown $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/helpers.rc 2>/dev/null
 	check "Configurando aplicativos por default"
-
-    # Dotfiles
-    info "Instalando Oh-My-Zsh"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-    info "Instalando Terminator"
-    apt install terminator -y > /dev/null 2>&1
-
-    info "Descargando dotfiles"
-    git clone https://github.com/dkadev/dotfiles $HOME_PATH/.dotfiles
-    chown -R $USERNAME:$USERNAME $HOME_PATH/.dotfiles 2>/dev/null
-    info "Instalando stow"
-    apt install stow -y > /dev/null 2>&1
-    check "Aplicando dotfiles"
-    cd $HOME_PATH/.dotfiles
-    stow zsh
-    stow oh-my-zsh
-    stow terminator
 }
