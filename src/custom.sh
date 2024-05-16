@@ -82,24 +82,6 @@ function customTerminal(){
 	sudo -u $USERNAME $HOME_PATH/.fzf/install < <(echo -e "y\ny\nn") > /dev/null 2>&1
 	check "Instalar FZF ($USERNAME)"
 
-	info "Configurando rofi"
-	mkdir $HOME_PATH/.config/rofi && cd $HOME_PATH/.config/rofi
-	wget https://raw.githubusercontent.com/VaughnValle/blue-sky/master/nord.rasi -O /usr/share/rofi/themes/nord.rasi > /dev/null 2>&1
-	check "Descargando tema para rofi"
-	echo "rofi.theme: /usr/share/rofi/themes/nord.rasi" > config 2>/dev/null
-	check "Configurando tema para rofi"
-	chmod 644 config > /dev/null 2>&1
-	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/rofi 2>/dev/null
-	check "Configurando rofi ($USERNAME)"
-	cd
-	if [ -d .config ]; then
-		ln -sf $HOME_PATH/.config/rofi /root/.config/rofi 2>/dev/null
-		check "Configurando rofi (root)"
-	else
-		mkdir .config && ln -sf $HOME_PATH/.config/rofi /root/.config/rofi 2>/dev/null
-		check "Configurando rofi (root)"
-	fi
-
 	info "Configurando findex"
 	wget https://github.com/mdgaziur/findex/releases/download/v0.8.1/findex-0.8.1-x86_64.tar.gz -O /tmp/findex-0.8.1-x86_64.tar.gz > /dev/null 2>&1
 	tar -xzf /tmp/findex-0.8.1-x86_64.tar.gz -C /tmp/ > /dev/null 2>&1
