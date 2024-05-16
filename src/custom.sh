@@ -9,8 +9,8 @@ function customTerminal(){
 
 	info "Descargando fuente (Hack Nerd Font)"
 	cd /usr/local/share/fonts/ 2>/dev/null
-	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip > /dev/null 2>&1
-	check "Descargando la fuente - https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Hack.zip"
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip > /dev/null 2>&1
+	check "Descargando la fuente - https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip"
 	unzip Hack.zip > /dev/null 2>&1
 	check "Instalando la fuente Hack Nerd Font"
 	rm Hack.zip 2>/dev/null
@@ -92,36 +92,39 @@ function customTerminal(){
 	chown root:$USERNAME /usr/bin/findex 2>/dev/null
 	check "Configurando findex"
 
+    # Configuración de escritorio
 	info "Configurando escritorio"
 	check "Descargando fondos kali"
     git clone https://github.com/owerdogan/wallpapers-for-kali /usr/share/backgrounds/wallpapers-for-kali > /dev/null 2>&1
 	check "Configurando fondos"
 	unlink /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/wallpapers-for-kali/kali-red/red-kali-dark-16x9.png /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
-	check "Configurando fondo de inicio de sesión"
+	check "Configurando inicio de sesión"
 	cp $FILES_PATH/xfce4/xfce4-desktop.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml 2>/dev/null
-	check "Configurando fondo de escritorio"
+	check "Configurando escritorio"
 	cp $FILES_PATH/xfce4/xfce4-keyboard-shortcuts.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml 2>/dev/null
 	check "Configurando atajos de teclado"
 	cp $FILES_PATH/xfce4/thunar.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml 2>/dev/null
-	check "Configurando ventanas"
+	check "Configurando explorador de archivos"
 	cp $FILES_PATH/xfce4/xfce4-panel.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml 2>/dev/null
-	check "Configurando barra de tarea"
+	check "Configurando barra de tareas"
 	cp $FILES_PATH/xfce4/xfwm4.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml 2>/dev/null
-	check "Configurando paneles de trabajo"
+	check "Configurando ventanas"
 	cp $FILES_PATH/xfce4/xfce4-power-manager.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml 2>/dev/null
 	check "Configurando administrador de energia"
+
+    # Configuración de iconos
 	cd $FILES_PATH/xfce4 2>/dev/null
 	tar -xJf Sweet-Rainbow.tar.xz && tar -xJf candy-icons.tar.xz > /dev/null 2>&1
 	mkdir $HOME_PATH/.local/share/icons && mv $FILES_PATH/xfce4/Sweet-Rainbow $FILES_PATH/xfce4/candy-icons $HOME_PATH/.local/share/icons > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.local/share/icons 2>/dev/null
-	check  "Configurando iconos ($USERNAME)"
+	check "Configurando iconos ($USERNAME)"
 	mkdir -p /root/.local/share && ln -s $HOME_PATH/.local/share/icons /root/.local/share/icons 2>/dev/null
 	check "Configurando iconos (root)"
 	cp $FILES_PATH/xfce4/xsettings.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > /dev/null 2>&1
@@ -129,9 +132,8 @@ function customTerminal(){
 	check "Configurando iconos en el sistema"
 	gtk-update-icon-cache $HOME_PATH/.local/share/icons/Sweet-Rainbow > /dev/null 2>&1 && gtk-update-icon-cache $HOME_PATH/.local/share/icons/candy-icons > /dev/null 2>&1
 	check "Actualizando iconos"
-	cp $FILES_PATH/xfce4/xfwm4.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > /dev/null 2>&1
-	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml 2>/dev/null
-	check "Configurando paneles de trabajo"
+
+    # Configuración de la barra de tareas
 	mkdir $HOME_PATH/.config/scripts && chown -R $USERNAME:$USERNAME $HOME_PATH/.config/scripts/ 2>/dev/null
 	check "Configurando directorio de scripts para la barra de tarea"
 	cp $FILES_PATH/scripts/ethstatus.sh $HOME_PATH/.config/scripts/ethstatus.sh > /dev/null 2>&1
@@ -194,6 +196,8 @@ function customTerminal(){
 	cp $FILES_PATH/panel/battery-19.rc $HOME_PATH/.config/xfce4/panel/battery-19.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/battery-19.rc 2>/dev/null
 	check "Configurando icono bateria en barra de tarea"
+
+    # Configuración del menú de inicio
 	cp $FILES_PATH/panel/whiskermenu-1.rc $HOME_PATH/.config/xfce4/panel/whiskermenu-1.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/whiskermenu-1.rc 2>/dev/null
 	check "Configurando opciones en menu de inicio"
@@ -201,6 +205,7 @@ function customTerminal(){
 	chown $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/helpers.rc 2>/dev/null
 	check "Configurando aplicativos por default"
 
+    # Dotfiles
     info "Instalando Oh-My-Zsh"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
