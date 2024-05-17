@@ -124,7 +124,7 @@ function customTerminal(){
 	check "Extrayendo iconos ($USERNAME)"
 
 	mkdir -p /root/.local/share && ln -s $HOME_PATH/.local/share/icons /root/.local/share/icons 2>/dev/null
-    cp $FILES_PATH/xfce4/Flat-Remix-Black-Dark /usr/share/icons/Flat-Remix-Black-Dark > /dev/null 2>&1
+    cp $FILES_PATH/xfce4/Flat-Remix-Black-Dark /usr/share/icons/Flat-Remix-Black-Dark -r > /dev/null 2>&1
 	check "Extrayendo iconos (root)"
 
 	cp $FILES_PATH/xfce4/xsettings.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > /dev/null 2>&1
