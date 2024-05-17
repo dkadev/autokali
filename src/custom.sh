@@ -72,12 +72,23 @@ function customTerminal(){
 
 	cd $HOME_PATH
 
-	# info "Instalando findex"
-	# wget https://github.com/mdgaziur/findex/releases/download/v0.8.1/findex-0.8.1-x86_64.tar.gz -O /tmp/findex-0.8.1-x86_64.tar.gz > /dev/null 2>&1
-	# tar -xzf /tmp/findex-0.8.1-x86_64.tar.gz -C /tmp/ > /dev/null 2>&1
-	# mv /tmp/findex-0.8.1-x86_64/findex /usr/bin 2>/dev/null
-	# chown root:$USERNAME /usr/bin/findex 2>/dev/null
-	# check "Configurando findex"
+	info "Instalando catapult"
+    apt install -y gettext \
+                 gir1.2-glib-2.0 \
+                 gir1.2-gtk-4.0 \
+                 gir1.2-pango-1.0 \
+                 libglib2.0-bin \
+                 python3 \
+                 python3-dev \
+                 python3-gi \
+                 qalc  > /dev/null 2>&1
+    git clone https://github.com/otsaloma/catapult > /dev/null 2>&1
+    cd catapult
+    make PREFIX=/usr/local build > /dev/null 2>&1
+    make PREFIX=/usr/local install > /dev/null 2>&1
+	check "Configurando catapult"
+
+    cd $HOME_PATH
 
     # Desktop
 	info "Configurando escritorio"
