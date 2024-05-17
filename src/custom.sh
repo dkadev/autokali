@@ -88,6 +88,9 @@ function customTerminal(){
 	ln -s /usr/share/backgrounds/red-kali-ascii-16x9.png /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
 	check "Configurando fondo inicio de sesión"
 
+    mv $FILES_PATH/xfce4/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null 2>&1
+    check "Configurando lightdm"
+
 	cp $FILES_PATH/xfce4/xfce4-desktop.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml 2>/dev/null
 	check "Configurando escritorio"
@@ -121,6 +124,7 @@ function customTerminal(){
 	check "Extrayendo iconos ($USERNAME)"
 
 	mkdir -p /root/.local/share && ln -s $HOME_PATH/.local/share/icons /root/.local/share/icons 2>/dev/null
+    cp $FILES_PATH/xfce4/Flat-Remix-Black-Dark /usr/share/icons/Flat-Remix-Black-Dark > /dev/null 2>&1
 	check "Extrayendo iconos (root)"
 
 	cp $FILES_PATH/xfce4/xsettings.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > /dev/null 2>&1
@@ -187,7 +191,7 @@ function customTerminal(){
 	cd $HOME_PATH/.config/scripts 2>/dev/null
 	echo "#!/bin/bash" > user.sh 2>/dev/null
 	echo "VAR=$USERNAME" >> user.sh 2>/dev/null
-	echo "ICON=(   )" >> user.sh 2>/dev/null
+	echo "ICON=( )" >> user.sh 2>/dev/null
 	echo 'ELEC=$(( $RANDOM % 4 ))' >> user.sh 2>/dev/null
 	echo 'echo -n ${ICON[$ELEC]} ${VAR:0:1} | tr "[:lower:]" "[:upper:]"; echo ${VAR:1} | tr "[:upper:]" "[:lower:]"' >> user.sh 2>/dev/null
 	chown $USERNAME:$USERNAME user.sh && chmod 774 user.sh 2>/dev/null
