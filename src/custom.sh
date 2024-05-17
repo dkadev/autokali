@@ -15,25 +15,21 @@ function customTerminal(){
     apt install fzf -y > /dev/null 2>&1
     check "Instalando fzf"
 
-	info "Instalando lsd"
     if [ "$(uname -m)" = "x86_64" ]; then
         wget "https://github.com/lsd-rs/lsd/releases/download/v1.1.2/lsd-musl_1.1.2_amd64.deb" -O /tmp/lsd.deb > /dev/null 2>&1
     elif [ "$(uname -m)" = "aarch64" ]; then
         wget "https://github.com/lsd-rs/lsd/releases/download/v1.1.2/lsd-musl_1.1.2_arm64.deb" -O /tmp/lsd.deb > /dev/null 2>&1
     fi
-	check "Descargando lsd"
 	dpkg -i /tmp/lsd.deb > /dev/null 2>&1
-	check "Instalación de lsd"
+	check "Instalando de lsd"
 
-	info "Instalando bat"
     if [ "$(uname -m)" = "x86_64" ]; then
 	    wget "https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_amd64.deb" -O /tmp/bat.deb > /dev/null 2>&1
     elif [ "$(uname -m)" = "aarch64" ]; then
 	    wget "https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_arm64.deb" -O /tmp/bat.deb > /dev/null 2>&1
     fi
-	check "Descargando bat"
 	dpkg -i /tmp/bat.deb > /dev/null 2>&1
-	check "Instalación de bat"
+	check "Instalando de bat"
 
     # Fonts
 	info "Descargando fuente (Hack Nerd Font)"
@@ -43,7 +39,7 @@ function customTerminal(){
 
 	unzip -o Hack.zip > /dev/null 2>&1
 	rm Hack.zip 2>/dev/null
-	check "Instalando la fuente Hack Nerd Font"
+	check "Instalando la fuente"
 
     cd $HOME_PATH
 
@@ -116,7 +112,8 @@ function customTerminal(){
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml 2>/dev/null
 	check "Configurando administrador de energia"
 
-    # Configuración de iconos
+    # Icons
+    info "Configurando iconos"
 	cd $FILES_PATH/xfce4 2>/dev/null
 	tar -xJf 05-Flat-Remix-Black-20240201.tar.xz > /dev/null 2>&1
 	mkdir $HOME_PATH/.local/share/icons && mv $FILES_PATH/xfce4/Flat-Remix-Black-Dark $HOME_PATH/.local/share/icons > /dev/null 2>&1
@@ -124,7 +121,7 @@ function customTerminal(){
 	check "Extrayendo iconos ($USERNAME)"
 
 	mkdir -p /root/.local/share && ln -s $HOME_PATH/.local/share/icons /root/.local/share/icons 2>/dev/null
-	check "Configurando iconos (root)"
+	check "Extrayendo iconos (root)"
 
 	cp $FILES_PATH/xfce4/xsettings.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml 2>/dev/null
@@ -134,8 +131,9 @@ function customTerminal(){
 	check "Actualizando iconos"
 
     # Configuración de la barra de tareas
+    info "Configurando barra de tareas"
 	mkdir $HOME_PATH/.config/scripts && chown -R $USERNAME:$USERNAME $HOME_PATH/.config/scripts/ 2>/dev/null
-	check "Configurando directorio de scripts para la barra de tarea"
+	check "Configurando directorio de scripts para la barra de tareas"
 
 	cp $FILES_PATH/scripts/ethstatus.sh $HOME_PATH/.config/scripts/ethstatus.sh > /dev/null 2>&1
 	chmod 774 $HOME_PATH/.config/scripts/ethstatus.sh 2>/dev/null
@@ -214,11 +212,13 @@ function customTerminal(){
 	check "Configurando icono bateria en barra de tarea"
 
     # Configuración del menú de inicio
+    info "Configurando menu de inicio"
 	cp $FILES_PATH/panel/whiskermenu-1.rc $HOME_PATH/.config/xfce4/panel/whiskermenu-1.rc > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/panel/whiskermenu-1.rc 2>/dev/null
 	check "Configurando opciones en menu de inicio"
 
     # Configuración de aplicaciones por default
+    info "Configurando aplicaciones por default"
 	cp $FILES_PATH/xfce4/helpers.rc $HOME_PATH/.config/xfce4/helpers.rc > /dev/null 2>&1
 	chown $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/helpers.rc 2>/dev/null
 	check "Configurando aplicativos por default"
