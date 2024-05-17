@@ -223,7 +223,7 @@ function install(){
 	endInstall
 }
 
-function installTerminal(){
+function installDesktop(){
 	echo -e "\n ${BYellow}⚠ Instalación de la capa de personalización de la Terminal y Escritorio.${Color_Off}\n"
 	validations
 	installPackages
@@ -231,7 +231,7 @@ function installTerminal(){
 	endInstall
 }
 
-function installTerceros(){
+function installTools(){
 	echo -e "\n ${BYellow}⚠ Instalación de Aplicativos de terceros.${Color_Off}\n"
 	validations
 	installPackages
