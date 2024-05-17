@@ -65,7 +65,16 @@ sudo ./autokali.sh --install desktop
 sudo ./autokali.sh --install tools
 ```
 
-At the beginning, it will prompt for some data for the installation process, the rest of the execution should be performed automatically without requiring user interaction. If any installation step fails, an error log file **error.log** is stored so that these errors can be manually resolved later.
+If any installation step fails, an error log file **error.log** is stored so that these errors can be manually resolved later.
+
+## Browser extensions
+
+I prefer installing the following extensions manually (not much of a hassle):
+
+- [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
+- [Wappalyzer](https://addons.mozilla.org/en-US/firefox/addon/wappalyzer/)
+- [Cookie Editor](https://addons.mozilla.org/en-US/firefox/addon/cookie-editor/)
+- [PwnFox](https://addons.mozilla.org/en-US/firefox/addon/pwnfox/)
 
 ## Credits
 
