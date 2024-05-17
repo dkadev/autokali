@@ -1,5 +1,4 @@
 #!/bin/bash
-#by @m4lal0
 
 # Regular Colors
 Black='\033[0;30m'      # Black
