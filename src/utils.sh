@@ -234,12 +234,6 @@ function gitTools(){
 	cd killcast && chmod +x killcast.py 2>/dev/null
 	mv killcast.py /usr/local/bin/killcast 2>/dev/null
 	check "Agregando killCast"
-	### CrackMapExec
-	#info "Instalando CrackMapExec"
-	#cd $UTILITIES_PATH 2>/dev/null
-	#git clone https://github.com/byt3bl33d3r/CrackMapExec >/dev/null 2>&1
-	#cd CrackMapExec && poetry install >/dev/null 2>&1
-	#check "Agregando CrackMapExec"
 
 	## Eternalblue-Doublepulsar-Metasploit
 	info "Descargando modulo Eternalblue-Doublepulsar para Metasploit"
