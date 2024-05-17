@@ -130,7 +130,7 @@ function customTerminal(){
     info "Configurando iconos"
 	cd $FILES_PATH/xfce4 2>/dev/null
 	tar -xJf 05-Flat-Remix-Black-20240201.tar.xz > /dev/null 2>&1
-	mkdir $HOME_PATH/.local/share/icons && cp $FILES_PATH/xfce4/Flat-Remix-Black-Dark $HOME_PATH/.local/share/icons > /dev/null 2>&1
+	mkdir $HOME_PATH/.local/share/icons && cp $FILES_PATH/xfce4/Flat-Remix-Black-Dark $HOME_PATH/.local/share/icons -r > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.local/share/icons 2>/dev/null
 	check "Extrayendo iconos ($USERNAME)"
 
