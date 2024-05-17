@@ -7,44 +7,13 @@ function customTerminal(){
 	info "Actualizando repositorios"
 	apt update > /dev/null 2>&1
 
-    info "Instalando paquetes necesarios"
+    # Packages
+    info "Instalando paquetes necesarios para la personalización"
     apt install terminator -y > /dev/null 2>&1
     check "Instalando Terminator"
+
     apt install fzf -y > /dev/null 2>&1
     check "Instalando fzf"
-
-	info "Descargando fuente (Hack Nerd Font)"
-	cd /usr/local/share/fonts/ 2>/dev/null
-	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip > /dev/null 2>&1
-	check "Descargando la fuente - https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip"
-	unzip -o Hack.zip > /dev/null 2>&1
-	check "Instalando la fuente Hack Nerd Font"
-	rm Hack.zip 2>/dev/null
-    cd $HOME_PATH
-
-    # Dotfiles
-    info "Descargando dotfiles"
-    git clone https://github.com/dkadev/dotfiles $HOME_PATH/.dotfiles  > /dev/null 2>&1
-    chown -R $USERNAME:$USERNAME $HOME_PATH/.dotfiles 2>/dev/null
-    info "Instalando stow"
-    apt install stow -y > /dev/null 2>&1
-    check "Aplicando dotfiles"
-    rm -rf .zshrc > /dev/null 2>&1
-    cd $HOME_PATH/.dotfiles > /dev/null 2>&1
-    stow zsh > /dev/null 2>&1
-    stow oh-my-zsh > /dev/null 2>&1
-    stow terminator > /dev/null 2>&1
-    cd $HOME_PATH
-
-    info "Instalando powerlevel10k"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME_PATH/.oh-my-zsh/custom}/themes/powerlevel10k > /dev/null 2>&1
-    check "Clonando el repositorio de powerlevel10k"
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME_PATH/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null 2>&1
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME_PATH/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting > /dev/null 2>&1
-    check "Instalando plugins de Oh My Zsh"
-	cp $FILES_PATH/.p10k.zsh $HOME_PATH/.p10k.zsh 2>/dev/null
-    chown $USERNAME:$USERNAME $HOME_PATH/.p10k.zsh 2>/dev/null
-	check "Agregando el p10k.zsh"
 
 	info "Instalando lsd"
     if [ "$(uname -m)" = "x86_64" ]; then
@@ -66,23 +35,62 @@ function customTerminal(){
 	dpkg -i /tmp/bat.deb > /dev/null 2>&1
 	check "Instalación de bat"
 
+    # Fonts
+	info "Descargando fuente (Hack Nerd Font)"
+	cd /usr/local/share/fonts/ 2>/dev/null
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip > /dev/null 2>&1
+	check "Descargando la fuente - https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip"
+
+	unzip -o Hack.zip > /dev/null 2>&1
+	rm Hack.zip 2>/dev/null
+	check "Instalando la fuente Hack Nerd Font"
+
+    cd $HOME_PATH
+
+    # Dotfiles
+    info "Descargando dotfiles"
+    git clone https://github.com/dkadev/dotfiles $HOME_PATH/.dotfiles  > /dev/null 2>&1
+    chown -R $USERNAME:$USERNAME $HOME_PATH/.dotfiles 2>/dev/null
+    check "Clonando el repositorio de dotfiles"
+    apt install stow -y > /dev/null 2>&1
+    check "Instalando stow"
+    rm -rf .zshrc > /dev/null 2>&1
+    cd $HOME_PATH/.dotfiles > /dev/null 2>&1
+    stow zsh > /dev/null 2>&1
+    stow oh-my-zsh > /dev/null 2>&1
+    stow terminator > /dev/null 2>&1
+    check "Aplicando dotfiles"
+
+    cd $HOME_PATH
+
+    # Powerlevel10k
+    info "Instalando powerlevel10k"
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME_PATH/.oh-my-zsh/custom}/themes/powerlevel10k > /dev/null 2>&1
+    check "Clonando el repositorio de powerlevel10k"
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME_PATH/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null 2>&1
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME_PATH/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting > /dev/null 2>&1
+    check "Instalando plugins de Oh My Zsh"
+	cp $FILES_PATH/.p10k.zsh $HOME_PATH/.p10k.zsh 2>/dev/null
+    chown $USERNAME:$USERNAME $HOME_PATH/.p10k.zsh 2>/dev/null
+	check "Agregando el p10k.zsh"
+
 	cd $HOME_PATH
 
-	info "Configurando findex"
-	wget https://github.com/mdgaziur/findex/releases/download/v0.8.1/findex-0.8.1-x86_64.tar.gz -O /tmp/findex-0.8.1-x86_64.tar.gz > /dev/null 2>&1
-	tar -xzf /tmp/findex-0.8.1-x86_64.tar.gz -C /tmp/ > /dev/null 2>&1
-	mv /tmp/findex-0.8.1-x86_64/findex /usr/bin 2>/dev/null
-	chown root:$USERNAME /usr/bin/findex 2>/dev/null
-	check "Configurando findex"
+	# info "Instalando findex"
+	# wget https://github.com/mdgaziur/findex/releases/download/v0.8.1/findex-0.8.1-x86_64.tar.gz -O /tmp/findex-0.8.1-x86_64.tar.gz > /dev/null 2>&1
+	# tar -xzf /tmp/findex-0.8.1-x86_64.tar.gz -C /tmp/ > /dev/null 2>&1
+	# mv /tmp/findex-0.8.1-x86_64/findex /usr/bin 2>/dev/null
+	# chown root:$USERNAME /usr/bin/findex 2>/dev/null
+	# check "Configurando findex"
 
-    # Configuración de escritorio
+    # Desktop
 	info "Configurando escritorio"
     cp $FILES_PATH/xfce4/red-kali-ascii-16x9.png /usr/share/backgrounds/ > /dev/null 2>&1
 	check "Descargando fondos kali"
 
 	unlink /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
 	ln -s /usr/share/backgrounds/red-kali-ascii-16x9.png /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
-	check "Configurando inicio de sesión"
+	check "Configurando fondo inicio de sesión"
 
 	cp $FILES_PATH/xfce4/xfce4-desktop.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml 2>/dev/null
@@ -103,7 +111,7 @@ function customTerminal(){
 	cp $FILES_PATH/xfce4/xfwm4.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml 2>/dev/null
 	check "Configurando ventanas"
-    
+
 	cp $FILES_PATH/xfce4/xfce4-power-manager.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml 2>/dev/null
 	check "Configurando administrador de energia"
@@ -113,7 +121,7 @@ function customTerminal(){
 	tar -xJf 05-Flat-Remix-Black-20240201.tar.xz > /dev/null 2>&1
 	mkdir $HOME_PATH/.local/share/icons && mv $FILES_PATH/xfce4/Flat-Remix-Black-Dark $HOME_PATH/.local/share/icons > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.local/share/icons 2>/dev/null
-	check "Configurando iconos ($USERNAME)"
+	check "Extrayendo iconos ($USERNAME)"
 
 	mkdir -p /root/.local/share && ln -s $HOME_PATH/.local/share/icons /root/.local/share/icons 2>/dev/null
 	check "Configurando iconos (root)"
