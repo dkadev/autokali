@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#by @m4lal0
 
 ### Instalación de paquetes extras
 function installPackages(){
