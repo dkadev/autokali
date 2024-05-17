@@ -95,15 +95,6 @@ function installApps(){
 	mv foxyproxy@eric.h.jung.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
 	check "Instalando extensión FoxyProxy"
 
-	#Instalando extensión: HackTools
-	cd /tmp/extensions 2>/dev/null
-	mkdir hacktools && cd hacktools 2>/dev/null
-	wget https://addons.mozilla.org/firefox/downloads/file/3901885/hacktools-0.4.0.xpi > /dev/null 2>&1
-	cp hacktools-0.4.0.xpi {f1423c11-a4e2-4709-a0f8-6d6a68c83d08}.xpi 2>/dev/null
-	chown $USERNAME:$USERNAME \{f1423c11-a4e2-4709-a0f8-6d6a68c83d08\}.xpi 2>/dev/null
-	mv \{f1423c11-a4e2-4709-a0f8-6d6a68c83d08\}.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
-	check "Instalando extensión HackTools"
-
 	#Instalando extensión: IP Address and Domain Information
 	cd /tmp/extensions 2>/dev/null
 	mkdir ipaddress && cd ipaddress 2>/dev/null
@@ -121,36 +112,6 @@ function installApps(){
 	chown $USERNAME:$USERNAME \{ae627955-50e3-431c-b6c5-7cd912f961cb\}.xpi 2>/dev/null
 	mv \{ae627955-50e3-431c-b6c5-7cd912f961cb\}.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
 	check "Instalando extensión EditThisCookie2"
-
-	#Instalando extensión: Custom UserAgent String
-	cd /tmp/extensions  2>/dev/null
-	mkdir useragent && cd useragent  2>/dev/null
-	wget https://addons.mozilla.org/firefox/downloads/file/4098688/user_agent_string_switcher-0.5.0.xpi > /dev/null 2>&1
-	cp user_agent_string_switcher-0.5.0.xpi {a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}.xpi 2>/dev/null
-	chown $USERNAME:$USERNAME \{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7\}.xpi 2>/dev/null
-	mv \{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7\}.xpi $HOME_PATH/.mozilla/firefox/*.default-esr/extensions/ 2>/dev/null
-	check "Instalando extensión Custom-UserAgent"
-
-	## Instalacion Brave
-	info "Instalar Brave"
-	curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add - > /dev/null 2>&1
-	echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list > /dev/null 2>&1
-	check "Descargando Brave"
-	apt-get update -y > /dev/null 2>&1
-	apt-get install brave-browser -y > /dev/null 2>&1
-	if [ $? -ne 0 ]; then
-		apt --fix-broken install -y > /dev/null 2>&1
-		apt-get install brave-browser -y > /dev/null 2>&1
-	fi
-	check "Instalando Brave"
-
-	info "Instalar Gotop"
-	cd $SCRIPT_PATH ; git clone --depth 1 https://github.com/cjbassi/gotop /tmp/gotop > /dev/null 2>&1
-	check "Clonando el repositorio de Gotop"
-	/tmp/gotop/scripts/download.sh > /dev/null 2>&1
-	check "Instalando Gotop"
-	mv gotop /usr/local/bin 2>/dev/null
-	check "Mover el binario de gotop a /usr/local/bin"
 
 	## Instalación de paquetes con pip & pip3
 	for ap in $(cat $PIP_TOOLS_LIST); do
