@@ -56,9 +56,9 @@ if [ $parameter_counter -eq 0 ]; then
 	helpPanel
 else
 	if [ "$(echo $install)" == "desktop" ]; then
-		installTerminal
+		installDesktop
 	elif [ "$(echo $install)" == "tools" ]; then
-		installTerceros
+		installTools
 	else
 		helpPanel
 	fi
