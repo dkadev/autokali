@@ -100,7 +100,7 @@ function helpPanel(){
 
 ### Banner
 function banner(){
-    echo -e "${BYellow}"
+    echo -e "${BRed}"
     sleep 0.15 && echo -e "\t                        █████             █████                ████   ███ "
     sleep 0.15 && echo -e "\t                       ░░███             ░░███                ░░███  ░░░  "
     sleep 0.15 && echo -e "\t   ██████   █████ ████ ███████    ██████  ░███ █████  ██████   ░███  ████ "
