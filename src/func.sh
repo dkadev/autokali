@@ -202,8 +202,6 @@ function validations(){
 
 ### Datos del equipo
 	tput cnorm
-    question "Hostname"
-	HOSTNAME=$input
 	question "Nombre de usuario ($(ls /home | xargs | tr ' ' '|'))"
 	USERNAME=$input
 	HOME_PATH="/home/$USERNAME"
