@@ -202,9 +202,8 @@ function customTerminal(){
 	cd $HOME_PATH/.config/scripts 2>/dev/null
 	echo "#!/bin/bash" > user.sh 2>/dev/null
 	echo "VAR=$USERNAME" >> user.sh 2>/dev/null
-	echo "ICON=( )" >> user.sh 2>/dev/null
-	echo 'ELEC=$(( $RANDOM % 4 ))' >> user.sh 2>/dev/null
-	echo 'echo -n ${ICON[$ELEC]} ${VAR:0:1} | tr "[:lower:]" "[:upper:]"; echo ${VAR:1} | tr "[:upper:]" "[:lower:]"' >> user.sh 2>/dev/null
+	echo "ICON=" >> user.sh 2>/dev/null
+	echo 'echo -n ${ICON} ${VAR:0:1} | tr "[:lower:]" "[:upper:]"; echo ${VAR:1} | tr "[:upper:]" "[:lower:]"' >> user.sh 2>/dev/null
 	chown $USERNAME:$USERNAME user.sh && chmod 774 user.sh 2>/dev/null
 	check "Configurando script de usuario en barra de tarea"
 
