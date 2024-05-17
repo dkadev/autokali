@@ -218,7 +218,7 @@ function install(){
 	validations
 	installPackages
 	installApps
-	customTerminal
+	customDesktop
 	gitTools
 	endInstall
 }
@@ -227,7 +227,7 @@ function installTerminal(){
 	echo -e "\n ${BYellow}⚠ Instalación de la capa de personalización de la Terminal y Escritorio.${Color_Off}\n"
 	validations
 	installPackages
-	customTerminal
+	customDesktop
 	endInstall
 }
 

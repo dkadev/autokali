@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ### Personalización de la terminal
-function customTerminal(){
+function customDesktop(){
 	section "COMENZANDO PERSONALIZACIÓN DEL SISTEMA"
 	checkInternet
 	info "Actualizando repositorios"
