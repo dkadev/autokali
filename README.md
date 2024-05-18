@@ -6,16 +6,13 @@ Also automates some config by downloading a dotfiles repository.
 
 ## Pre-installation steps
 
-0. Install Oh My Zsh (if not already installed):
-
-    ```bash
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    ```
-
 1. Create a new sudo user:
 
     ```bash
     sudo adduser <username>
+    ```
+
+    ```bash
     sudo usermod -aG sudo <username>
     ```
 
@@ -29,6 +26,12 @@ Also automates some config by downloading a dotfiles repository.
 
     ```bash
     sudo reboot
+    ```
+
+4. Install Oh My Zsh and set zsh default shell (on the new user account):
+
+    ```bash
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     ```
 
 ## Download
