@@ -12,6 +12,11 @@ function installPackages(){
 	fi
 	apt --fix-broken install -y > /dev/null 2>&1
 	check "Instalando paquetes adicionales"
+    ## Instalar pipx y git
+    apt install pipx git -y > /dev/null 2>&1
+    ## Instalar rust
+    info "Instalando Rust"
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y > /dev/null 2>&1
 	## Actualizar paquetes
 	info "Actualizar paquetes"
 	apt update > /dev/null 2>&1
@@ -418,11 +423,9 @@ function gitTools(){
 	mv /tmp/Govenom /usr/local/bin
 	check "Instalando Govenom"
 	## NetExec
-	info "Instalando NetExec"
-	cd /tmp 2>/dev/null
-	wget https://github.com/Pennyw0rth/NetExec/releases/latest/download/nxc >/dev/null 2>&1
-	chmod 777 nxc && mv /tmp/nxc /usr/local/bin/NetExec >/dev/null 2>&1
-	check "Agregando NetExec"
+    info "Descargando NetExec"
+    pipx install git+https://github.com/Pennyw0rth/NetExec
+    check "Instalando NetExec"
 	## RunasCs
 	info "Descargando RunasCs"
 	cd $PRIVESCWIN_PATH && mkdir RunasCs 2>/dev/null
