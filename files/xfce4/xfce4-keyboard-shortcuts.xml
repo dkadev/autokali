@@ -28,7 +28,7 @@
       <property name="override" type="bool" value="true"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;z" type="string" value="/usr/bin/terminator"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;e" type="string" value="/usr/bin/thunar"/>
-      <property name="&lt;Primary&gt;&lt;Shift&gt;f" type="string" value="/bin/firejail /usr/bin/firefox"/>
+      <property name="&lt;Primary&gt;&lt;Shift&gt;f" type="string" value="/usr/bin/firefox"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;b" type="string" value="/usr/bin/burpsuite"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;space" type="string" value="/usr/local/bin/catapult"/>
       <property name="&lt;Primary&gt;&lt;Shift&gt;m" type="string" value="/usr/bin/mousepad"/>
