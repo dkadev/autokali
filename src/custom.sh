@@ -92,11 +92,11 @@ function customDesktop(){
 
     # Desktop
 	info "Configurando escritorio"
-    cp $FILES_PATH/xfce4/red-kali-ascii-16x9.png /usr/share/backgrounds/ > /dev/null 2>&1
+    cp $FILES_PATH/xfce4/kali-*.jpg /usr/share/backgrounds/ > /dev/null 2>&1
 	check "Descargando fondos kali"
 
 	unlink /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
-	ln -s /usr/share/backgrounds/red-kali-ascii-16x9.png /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
+	ln -s /usr/share/backgrounds/kali-login-ascii.jpg /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
 	check "Configurando fondo inicio de sesión"
 
     mv $FILES_PATH/xfce4/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null 2>&1
