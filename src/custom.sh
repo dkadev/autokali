@@ -118,7 +118,7 @@ function customDesktop(){
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml 2>/dev/null
 	check "Configurando barra de tareas"
 
-    mkdir -p $HOME_PATH/.local/share/themes/nanodesu.zip && cp $FILES_PATH/xfce4/nanodesu.zip $HOME_PATH/.local/share/themes/nanodesu.zip > /dev/null 2>&1
+    cp $FILES_PATH/xfce4/nanodesu.zip $HOME_PATH/.local/share/themes/ > /dev/null 2>&1
     unzip -o $HOME_PATH/.local/share/themes/nanodesu.zip -d $HOME_PATH/.local/share/themes/ > /dev/null 2>&1
     chown -R $USERNAME:$USERNAME $HOME_PATH/.local/share/themes/ 2>/dev/null
     check "Descargando tema nanodesu"
@@ -208,7 +208,7 @@ function customDesktop(){
 	echo "#!/bin/bash" > user.sh 2>/dev/null
 	echo "VAR=$USERNAME" >> user.sh 2>/dev/null
 	echo "ICON=" >> user.sh 2>/dev/null
-	echo 'echo -n ${ICON} ${VAR:0:1} | tr "[:lower:]" "[:upper:]"; echo ${VAR:1} | tr "[:upper:]" "[:lower:]"' >> user.sh 2>/dev/null
+	echo 'echo -n ${ICON} ${VAR:0:1} | tr "[:lower:]" "[:upper:]"; echo -n ${VAR:1} " " | tr "[:upper:]" "[:lower:]"' >> user.sh 2>/dev/null
 	chown $USERNAME:$USERNAME user.sh && chmod 774 user.sh 2>/dev/null
 	check "Configurando script de usuario en barra de tarea"
 
