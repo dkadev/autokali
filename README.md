@@ -6,47 +6,19 @@ Also automates some config by downloading a dotfiles repository.
 
 ## Pre-installation steps
 
-1. Create a new sudo user:
+Install Oh My Zsh and set zsh default shell (on the new user account):
 
-    ```bash
-    sudo adduser <username>
-    ```
-
-    ```bash
-    sudo usermod -aG sudo <username>
-    ```
-
-2. Change hostname:
-
-    ```bash
-    sudo hostnamectl set-hostname <new-hostname>
-    ```
-
-3. Reboot the system:
-
-    ```bash
-    sudo reboot
-    ```
-
-4. Install Oh My Zsh and set zsh default shell (on the new user account):
-
-    ```bash
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    ```
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
 ## Download
 
-1. Clone this repository to your local machine.
+Clone this repository to your local machine and give the installation script execution permissions.
 
-    ```bash
-    git clone https://github.com/dkadev/autokali
-    ```
-
-2. Open a terminal and navigate to the project directory and give the installation script execution permissions.
-
-    ```bash
-    cd autokali; chmod +x autokali.sh
-    ```
+```bash
+git clone https://github.com/dkadev/autokali && cd autokali && chmod +x autokali.sh
+```
 
 ## Usage
 
