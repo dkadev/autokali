@@ -15,7 +15,6 @@
         <value type="int" value="3"/>
         <value type="int" value="9"/>
         <value type="int" value="29"/>
-        <value type="int" value="28"/>
         <value type="int" value="30"/>
         <value type="int" value="10"/>
         <value type="int" value="11"/>
@@ -60,12 +59,98 @@
       </property>
       <property name="enter-opacity" type="uint" value="100"/>
       <property name="leave-opacity" type="uint" value="100"/>
-      <property name="disable-struts" type="bool" value="false"/>
       <property name="icon-size" type="uint" value="20"/>
+      <property name="enable-struts" type="bool" value="true"/>
     </property>
   </property>
   <property name="plugins" type="empty">
-    <property name="plugin-1" type="string" value="whiskermenu"/>
+    <property name="plugin-1" type="string" value="whiskermenu">
+      <property name="button-icon" type="string" value="kali-menu"/>
+      <property name="hover-switch-category" type="bool" value="false"/>
+      <property name="favorites-in-recent" type="bool" value="true"/>
+      <property name="position-search-alternate" type="bool" value="true"/>
+      <property name="menu-width" type="int" value="525"/>
+      <property name="menu-height" type="int" value="665"/>
+      <property name="command-lockscreen" type="string" value="/usr/bin/i3lock-fancy"/>
+      <property name="show-command-lockscreen" type="bool" value="true"/>
+      <property name="command-switchuser" type="string" value="gdmflexiserver"/>
+      <property name="show-command-menueditor" type="bool" value="true"/>
+      <property name="favorites" type="array">
+        <value type="string" value="xfce4-terminal-emulator.desktop"/>
+        <value type="string" value="xfce4-file-manager.desktop"/>
+        <value type="string" value="xfce-text-editor.desktop"/>
+        <value type="string" value="xfce4-web-browser.desktop"/>
+        <value type="string" value="kali-www.desktop"/>
+        <value type="string" value="kali-docs.desktop"/>
+        <value type="string" value="kali-bugs.desktop"/>
+        <value type="string" value="offsec-training.desktop"/>
+        <value type="string" value="exploit-database.desktop"/>
+        <value type="string" value="vulnhub.desktop"/>
+      </property>
+      <property name="recent" type="array">
+        <value type="string" value="cherrytree.desktop"/>
+        <value type="string" value="xfce4-file-manager.desktop"/>
+        <value type="string" value="kali-wordlists.desktop"/>
+        <value type="string" value="kali-nikto.desktop"/>
+        <value type="string" value="xfce-ui-settings.desktop"/>
+        <value type="string" value="panel-preferences.desktop"/>
+        <value type="string" value="xfce-wm-settings.desktop"/>
+        <value type="string" value="xfce4-terminal-emulator.desktop"/>
+        <value type="string" value="xfce-backdrop-settings.desktop"/>
+      </property>
+      <property name="search-actions" type="int" value="8">
+        <property name="action-0" type="empty">
+          <property name="name" type="string" value="Man Pages"/>
+          <property name="pattern" type="string" value="#"/>
+          <property name="command" type="string" value="exo-open --launch TerminalEmulator man %s"/>
+          <property name="regex" type="bool" value="false"/>
+        </property>
+        <property name="action-1" type="empty">
+          <property name="name" type="string" value="Search the Web"/>
+          <property name="pattern" type="string" value="?"/>
+          <property name="command" type="string" value="exo-open --launch WebBrowser https://duckduckgo.com/?q=%u"/>
+          <property name="regex" type="bool" value="false"/>
+        </property>
+        <property name="action-2" type="empty">
+          <property name="name" type="string" value="Search for Files"/>
+          <property name="pattern" type="string" value="-"/>
+          <property name="command" type="string" value="catfish --path=~ --start %s"/>
+          <property name="regex" type="bool" value="false"/>
+        </property>
+        <property name="action-3" type="empty">
+          <property name="name" type="string" value="Wikipedia"/>
+          <property name="pattern" type="string" value="!w"/>
+          <property name="command" type="string" value="exo-open --launch WebBrowser https://en.wikipedia.org/wiki/%u"/>
+          <property name="regex" type="bool" value="false"/>
+        </property>
+        <property name="action-4" type="empty">
+          <property name="name" type="string" value="Run in Terminal"/>
+          <property name="pattern" type="string" value="!"/>
+          <property name="command" type="string" value="exo-open --launch TerminalEmulator %s"/>
+          <property name="regex" type="bool" value="false"/>
+        </property>
+        <property name="action-5" type="empty">
+          <property name="name" type="string" value="Open URI"/>
+          <property name="pattern" type="string" value="^(file|http|https):\/\/(.*)$"/>
+          <property name="command" type="string" value="exo-open \0"/>
+          <property name="regex" type="bool" value="true"/>
+        </property>
+        <property name="action-6" type="empty">
+          <property name="name" type="string" value="Páginas del manual"/>
+          <property name="pattern" type="string" value="#"/>
+          <property name="command" type="string" value="/usr/bin/mate-terminal -e &quot;man %s&quot;"/>
+          <property name="regex" type="bool" value="false"/>
+        </property>
+        <property name="action-7" type="empty">
+          <property name="name" type="string" value="Abrir en la terminal"/>
+          <property name="pattern" type="string" value="!"/>
+          <property name="command" type="string" value="/usr/bin/mate-terminal -e &quot;%s&quot;"/>
+          <property name="regex" type="bool" value="false"/>
+        </property>
+      </property>
+      <property name="show-button-icon" type="bool" value="false"/>
+      <property name="show-button-title" type="bool" value="true"/>
+    </property>
     <property name="plugin-2" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
     </property>
@@ -108,6 +193,7 @@
     </property>
     <property name="plugin-17" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+      <property name="known-players" type="string" value="firefox"/>
     </property>
     <property name="plugin-20" type="string" value="separator"/>
     <property name="plugin-21" type="string" value="actions">
@@ -164,13 +250,10 @@
       <property name="style" type="uint" value="0"/>
     </property>
     <property name="plugin-19" type="string" value="battery"/>
-    <property name="plugin-28" type="string" value="separator">
-      <property name="style" type="uint" value="0"/>
-      <property name="expand" type="bool" value="true"/>
-    </property>
     <property name="plugin-29" type="string" value="genmon"/>
     <property name="plugin-30" type="string" value="separator">
       <property name="style" type="uint" value="3"/>
+      <property name="expand" type="bool" value="false"/>
     </property>
     <property name="plugin-31" type="string" value="genmon"/>
     <property name="plugin-32" type="string" value="separator">
