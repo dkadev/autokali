@@ -3,7 +3,7 @@
 <channel name="xfwm4" version="1.0">
   <property name="general" type="empty">
     <property name="button_layout" type="empty"/>
-    <property name="theme" type="string" value="nanodesu"/>
+    <property name="theme" type="string" value="default"/>
     <property name="title_font" type="string" value="Hack Nerd Font Mono Bold 9"/>
     <property name="easy_click" type="empty"/>
     <property name="workspace_count" type="int" value="8"/>

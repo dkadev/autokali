@@ -70,6 +70,7 @@ function customDesktop(){
 
 	cd $HOME_PATH
 
+    # Catapult
 	info "Instalando catapult"
     apt install -y gettext \
                  gir1.2-glib-2.0 \
@@ -115,11 +116,6 @@ function customDesktop(){
 	cp $FILES_PATH/xfce4/xfce4-panel.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml 2>/dev/null
 	check "Configurando barra de tareas"
-
-    cp $FILES_PATH/xfce4/nanodesu.zip $HOME_PATH/.local/share/themes/ > /dev/null 2>&1
-    unzip -o $HOME_PATH/.local/share/themes/nanodesu.zip -d $HOME_PATH/.local/share/themes/ > /dev/null 2>&1
-    chown -R $USERNAME:$USERNAME $HOME_PATH/.local/share/themes/ 2>/dev/null
-    check "Descargando tema nanodesu"
 
 	cp $FILES_PATH/xfce4/xfwm4.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > /dev/null 2>&1
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml 2>/dev/null
