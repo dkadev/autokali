@@ -32,14 +32,12 @@ function customDesktop(){
 	check "Instalando de bat"
 
     # Fonts
-	info "Descargando fuente (Hack Nerd Font)"
+	info "Installing font (Hack Nerd Font)"
 	cd /usr/local/share/fonts/ 2>/dev/null
-	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip > /dev/null 2>&1
-	check "Descargando la fuente - https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Hack.zip"
-
+    cp $FILES_PATH/fonts/Hack.zip /usr/local/share/fonts/ > /dev/null 2>&1
 	unzip -o Hack.zip > /dev/null 2>&1
 	rm Hack.zip 2>/dev/null
-	check "Instalando la fuente"
+	check "Hack Nerd Font installed"
 
     cd $HOME_PATH
 
