@@ -4,7 +4,7 @@ source src/func.sh
 source src/utils.sh
 source src/custom.sh
 
-### Variables globales
+### Global Variables
 SCRIPT_PATH="$(pwd)"
 FILES_PATH="$SCRIPT_PATH/files"
 TOOLS_PATH="$SCRIPT_PATH/tools"
@@ -27,7 +27,7 @@ PACKAGES_LIST=$(cat $TOOLS_PATH/packages.txt | tr '\r\n' ' ')
 clear
 banner
 
-### Opciones
+### Options
 arg=""
 for arg; do
 	delim=""
