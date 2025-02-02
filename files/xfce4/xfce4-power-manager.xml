@@ -5,7 +5,7 @@
     <property name="power-button-action" type="empty"/>
     <property name="show-panel-label" type="empty"/>
     <property name="show-tray-icon" type="bool" value="false"/>
-    <property name="lock-screen-suspend-hibernate" type="bool" value="false"/>
+    <property name="lock-screen-suspend-hibernate" type="bool" value="true"/>
     <property name="logind-handle-lid-switch" type="bool" value="false"/>
     <property name="blank-on-ac" type="int" value="0"/>
     <property name="dpms-on-ac-sleep" type="uint" value="0"/>

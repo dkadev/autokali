@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 
 <channel name="xfce4-desktop" version="1.0">
   <property name="backdrop" type="empty">
@@ -8,7 +8,7 @@
         <property name="color1" type="empty"/>
         <property name="color2" type="empty"/>
         <property name="color-style" type="empty"/>
-        <property name="image-path" type="string" value="/usr/share/backgrounds/kali-ascii.jpg"/>
+        <property name="image-path" type="empty"/>
         <property name="image-show" type="empty"/>
         <property name="last-image" type="empty"/>
         <property name="last-single-image" type="empty"/>
@@ -19,11 +19,26 @@
         <property name="color1" type="empty"/>
         <property name="color2" type="empty"/>
         <property name="color-style" type="empty"/>
-        <property name="image-path" type="string" value="/usr/share/backgrounds/kali-ascii.jpg"/>
+        <property name="image-path" type="empty"/>
         <property name="image-show" type="empty"/>
         <property name="last-image" type="empty"/>
         <property name="last-single-image" type="empty"/>
         <property name="image-style" type="empty"/>
+      </property>
+      <property name="monitor2" type="empty">
+        <property name="image-path" type="empty"/>
+        <property name="image-style" type="empty"/>
+        <property name="image-show" type="empty"/>
+      </property>
+      <property name="monitor3" type="empty">
+        <property name="image-path" type="empty"/>
+        <property name="image-style" type="empty"/>
+        <property name="image-show" type="empty"/>
+      </property>
+      <property name="monitor4" type="empty">
+        <property name="image-path" type="empty"/>
+        <property name="image-style" type="empty"/>
+        <property name="image-show" type="empty"/>
       </property>
       <property name="monitorVirtual1" type="empty">
         <property name="workspace0" type="empty">
@@ -77,6 +92,48 @@
           <property name="last-image" type="string" value="/usr/share/backgrounds/kali-ascii.jpg"/>
         </property>
       </property>
+      <property name="monitorVirtual-1" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="color-style" type="int" value="1"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/kali-ascii.jpg"/>
+        </property>
+        <property name="workspace1" type="empty">
+          <property name="color-style" type="int" value="1"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/kali-ascii.jpg"/>
+        </property>
+        <property name="workspace2" type="empty">
+          <property name="color-style" type="int" value="1"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/kali-ascii.jpg"/>
+        </property>
+        <property name="workspace3" type="empty">
+          <property name="color-style" type="int" value="1"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/kali-ascii.jpg"/>
+        </property>
+        <property name="workspace4" type="empty">
+          <property name="color-style" type="int" value="1"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/kali-ascii.jpg"/>
+        </property>
+        <property name="workspace5" type="empty">
+          <property name="color-style" type="int" value="1"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/kali-ascii.jpg"/>
+        </property>
+        <property name="workspace6" type="empty">
+          <property name="color-style" type="int" value="1"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/kali-ascii.jpg"/>
+        </property>
+        <property name="workspace7" type="empty">
+          <property name="color-style" type="int" value="1"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/kali-ascii.jpg"/>
+        </property>
+      </property>
     </property>
   </property>
   <property name="desktop-icons" type="empty">
@@ -90,4 +147,5 @@
     <property name="icon-size" type="uint" value="35"/>
     <property name="tooltip-size" type="empty"/>
   </property>
+  <property name="last-settings-migration-version" type="uint" value="1"/>
 </channel>
