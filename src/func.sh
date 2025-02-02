@@ -75,26 +75,26 @@ On_White='\033[47m'     # Background White
 trap ctrl_c INT
 
 function ctrl_c(){
-    echo -e "\n\n${Cyan}[${BYellow}⚠${Cyan}] ${BRed}Saliendo de la aplicación...${Color_Off}"
+    echo -e "\n\n${Cyan}[${BYellow}⚠${Cyan}] ${BRed}Exiting the application...${Color_Off}"
     tput cnorm
     exit 1
 }
 
-### Panel de Ayuda
+### Help Panel
 function helpPanel(){
-    echo -e "\n${Cyan}[${BYellow}!${Cyan}]${BWhite} Uso:${Color_Off}"
-    echo -e "\n\t${LGreen}./autoDeploy.sh ${LRed}[OPCION]${Color_Off}"
-    echo -e "\n${BWhite}OPCIONES:${Color_Off}"
-    echo -e "\t${Cyan}[${Red}-i, --install${Cyan}]${Purple} \tInstalación completa de la capa de personalización.${Color_Off}"
-    echo -e "\t\t${Yellow}terminal: ${Purple}\tInstalación solamente de la personalización de la terminal y escritorio.${Color_Off}"
-    echo -e "\t\t${Yellow}apps: ${Purple}\t\tInstalación solamente de los programas de terceros.${Color_Off}"
-    echo -e "\t${Cyan}[${Red}-d, --delete${Cyan}]${Purple} \t\tEliminar configuración de Escritorio y directorios de los aplicativos de terceros.${Color_Off}"
-    echo -e "\t${Cyan}[${Red}-h, --help${Cyan}]${Purple} \t\tMostrar este panel de ayuda.${Color_Off}"
-    echo -e "\n${BWhite}EJEMPLOS:${Color_Off}"
-    echo -e "\t${LWhite}Instalación Completa (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install\n${Color_Off}"
-    echo -e "\t${LWhite}Instalación solamente con personalización de terminal y escritorio (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install ${Yellow}terminal\n${Color_Off}"
-    echo -e "\t${LWhite}Instalación solamente con aplicativos de terceros (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install ${Yellow}apps\n${Color_Off}"
-    echo -e "\t${LWhite}Eliminar configuración de escritorio y directorios de aplicativos${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}-d\n${Color_Off}"
+    echo -e "\n${Cyan}[${BYellow}!${Cyan}]${BWhite} Usage:${Color_Off}"
+    echo -e "\n\t${LGreen}./autoDeploy.sh ${LRed}[OPTION]${Color_Off}"
+    echo -e "\n${BWhite}OPTIONS:${Color_Off}"
+    echo -e "\t${Cyan}[${Red}-i, --install${Cyan}]${Purple} \tComplete installation of the customization layer.${Color_Off}"
+    echo -e "\t\t${Yellow}terminal: ${Purple}\tInstallation of terminal and desktop customization only.${Color_Off}"
+    echo -e "\t\t${Yellow}apps: ${Purple}\t\tInstallation of third-party programs only.${Color_Off}"
+    echo -e "\t${Cyan}[${Red}-d, --delete${Cyan}]${Purple} \t\tRemove Desktop configuration and third-party application directories.${Color_Off}"
+    echo -e "\t${Cyan}[${Red}-h, --help${Cyan}]${Purple} \t\tShow this help panel.${Color_Off}"
+    echo -e "\n${BWhite}EXAMPLES:${Color_Off}"
+    echo -e "\t${LWhite}Complete Installation (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install\n${Color_Off}"
+    echo -e "\t${LWhite}Installation with terminal and desktop customization only (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install ${Yellow}terminal\n${Color_Off}"
+    echo -e "\t${LWhite}Installation with third-party applications only (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install ${Yellow}apps\n${Color_Off}"
+    echo -e "\t${LWhite}Remove desktop configuration and application directories${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}-d\n${Color_Off}"
     tput cnorm; exit 1
 }
 
@@ -114,7 +114,7 @@ function banner(){
 	tput civis
 }
 
-### Funciones informativos
+### Informative functions
 function info(){
 	echo -e "${Cyan}[${BYellow}!${Cyan}] ${BWhite}$1${Color_Off}"
 }
@@ -146,7 +146,7 @@ function error(){
 }
 
 function good(){
-	echo -e "${Cyan}[${BGreen}✔${Cyan}] ${BGreen}Exitoso - $1${Color_Off}"
+	echo -e "${Cyan}[${BGreen}✔${Cyan}] ${BGreen}Successful - $1${Color_Off}"
 }
 
 function check(){
@@ -161,60 +161,60 @@ function section(){
 	echo -e "\n${Cyan}[${BBlue}+${Cyan}] ${BBlue}$1${Color_Off}"
 }
 
-### Eliminando directorios de los aplicativos descargados de Github
+### Removing directories of applications downloaded from Github
 function deleteApp(){
 	validations
-	info "Eliminando directorios de aplicativos."
+	info "Removing application directories."
 	if [[ -d $PRIVESCLIN_PATH || -d $PRIVESCWIN_PATH || -d $OSINT_PATH || -d $UTILITIES_PATH || -d $WEB_PATH || -d $WIFI_PATH  || -d $WORDPRESS_PATH || -d $AD_PATH ]]; then
 		rm -rf {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH,$AD_PATH} 2>&1
-		check "Eliminado directorios."
+		check "Directories removed."
 	else
-		error "No hay directorios de aplicativos instalados."
+		error "No application directories installed."
 	fi
-	info "Eliminando configuracion de Escritorio."
+	info "Removing Desktop configuration."
 	rm -rf $HOME_PATH/.config/xfce4 2>/dev/null
-	check "Eliminando configuración escritorio."
+	check "Removing desktop configuration."
 	sleep 2
 	tput cnorm && reboot
 }
 
-### Revisando conexión a Internet
+### Checking Internet connection
 function checkInternet(){
-	info "Comprobando resolución DNS"
+	info "Checking DNS resolution"
 	host www.google.com > /dev/null 2>&1
 	if [ $? -ne 0 ]; then
-		error "En la resolución DNS - no se pudo resolver www.google.com"
+		error "In DNS resolution - could not resolve www.google.com"
 		exit 1
 	fi
 }
 
 function validations(){
-### Validación de ejecución con root
+### Validation of execution with root
 	if [[ ! -d tools || ! -d files ]]; then
-		echo -e "\n${Cyan}[${BYellow}!${Cyan}] ${BRed}Ejecuta este script desde la carpeta de autoDeploy para evitar errores${Color_Off}\n"
+		echo -e "\n${Cyan}[${BYellow}!${Cyan}] ${BRed}Run this script from the autoDeploy folder to avoid errors${Color_Off}\n"
 		exit 1
 	fi
 	rm -f $SCRIPT_PATH/error.log 2>/dev/null
 	if [ "$EUID" -ne 0 ]; then
-		error "Este script debe ser ejecutado por r00t!\n"
+		error "This script must be run as root!\n"
 		exit 1
 	fi
 
-### Datos del equipo
+### System data
 	tput cnorm
-	question "Nombre de usuario ($(ls /home | xargs | tr ' ' '|'))"
+	question "Username ($(ls /home | xargs | tr ' ' '|'))"
 	USERNAME=$input
 	HOME_PATH="/home/$USERNAME"
 	tput civis
 	if [ ! -d "$HOME_PATH" ]; then
-		error "El directorio home del usuario no existe (/home/$USERNAME)"
+		error "The user's home directory does not exist (/home/$USERNAME)"
 		exit 1
 	fi
 }
 
-### Main instalation
+### Main installation
 function install(){
-	echo -e "\n ${BYellow}⚠ Instalación Completa.${Color_Off}\n"
+	echo -e "\n ${BYellow}⚠ Complete Installation.${Color_Off}\n"
 	validations
 	installPackages
 	installApps
@@ -224,7 +224,7 @@ function install(){
 }
 
 function installDesktop(){
-	echo -e "\n ${BYellow}⚠ Instalación de la capa de personalización de la Terminal y Escritorio.${Color_Off}\n"
+	echo -e "\n ${BYellow}⚠ Installation of the Terminal and Desktop customization layer.${Color_Off}\n"
 	validations
 	installPackages
 	customDesktop
@@ -232,7 +232,7 @@ function installDesktop(){
 }
 
 function installTools(){
-	echo -e "\n ${BYellow}⚠ Instalación de Aplicativos de terceros.${Color_Off}\n"
+	echo -e "\n ${BYellow}⚠ Installation of third-party applications.${Color_Off}\n"
 	validations
 	installPackages
 	installApps
@@ -240,21 +240,21 @@ function installTools(){
 	endInstall
 }
 
-### Finalización del script
+### End of script
 function endInstall(){
-	info "Actualizacion de updatedb"
+	info "Updating updatedb"
 	sudo updatedb > /dev/null 2>&1
-	check "Ejecutando updatedb"
-	section "INSTALACIÓN FINALIZADA"
+	check "Running updatedb"
+	section "INSTALLATION COMPLETED"
 	tput cnorm
-	info "Debes reiniciar el ordenador para terminar la instalación"
-	yes_or_no "¿Quieres hacerlo ahora?"
+	info "You must restart the computer to complete the installation"
+	yes_or_no "Do you want to do it now?"
 
 	section "Happy Hacking! =)" && sleep 2
 	if [ $input -eq 1 ]; then
 		reboot
 	else
-		echo -e "\n ${BGreen}Finalizado la instalación. Es necesario reiniciar su sistema de manera manual.${Color_Off}\n"
+		echo -e "\n ${BGreen}Installation completed. You need to restart your system manually.${Color_Off}\n"
 		tput cnorm; exit 1
 	fi
 }
