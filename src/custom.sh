@@ -31,6 +31,20 @@ function customDesktop(){
 	dpkg -i /tmp/bat.deb > /dev/null 2>&1
 	check "Installing bat"
 
+    # Install Oh My Zsh
+    info "Installing Oh My Zsh"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" > /dev/null 2>&1
+    check "Installing Oh My Zsh"
+
+    # Set zsh as default shell if not already set
+    info "Setting zsh as default shell"
+    if [ "$SHELL" != "/bin/zsh" ]; then
+        chsh -s /bin/zsh
+        check "Setting zsh as default shell"
+    else
+        info "zsh is already the default shell"
+    fi
+
     # Fonts
 	info "Installing font (Hack Nerd Font)"
 	cd /usr/local/share/fonts/ 2>/dev/null

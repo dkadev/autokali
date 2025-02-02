@@ -4,14 +4,6 @@ AutoKali is a tool designed to automate the deployment of a custom environment o
 
 Also automates some config by downloading a dotfiles repository.
 
-## Pre-installation steps
-
-Install Oh My Zsh and set zsh default shell (on the new user account):
-
-```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
 ## Download
 
 Clone this repository to your local machine and give the installation script execution permissions.
