@@ -33,7 +33,7 @@ function customDesktop(){
 
     # Install Oh My Zsh
     info "Installing Oh My Zsh"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" > /dev/null 2>&1
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended > /dev/null 2>&1
     check "Installing Oh My Zsh"
 
     # Set zsh as default shell if not already set
