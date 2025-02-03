@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-    ### Installation of extra packages
+### Installation of extra packages
 function installPackages(){
 	section "STARTING TO UPDATE REPOSITORIES"
 	checkInternet
