@@ -2,7 +2,7 @@
 
 <channel name="xsettings" version="1.0">
   <property name="Net" type="empty">
-    <property name="ThemeName" type="empty"/>
+    <property name="ThemeName" type="string" value="Material-Black-Blueberry"/>
     <property name="IconThemeName" type="string" value="Flat-Remix-Black-Dark"/>
   </property>
   <property name="Xft" type="empty">
@@ -21,6 +21,6 @@
     <property name="DecorationLayout" type="string" value="icon,menu:minimize,maximize,close"/>
   </property>
   <property name="Xfce" type="empty">
-    <property name="SyncThemes" type="empty"/>
+    <property name="SyncThemes" type="bool" value="true"/>
   </property>
 </channel>
