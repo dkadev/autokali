@@ -153,6 +153,14 @@ function customDesktop(){
 	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml 2>/dev/null
 	check "Configuring power manager"
 
+    cp $FILES_PATH/xfce4/xfce4-screensaver.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml > /dev/null 2>&1
+    chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml 2>/dev/null
+	check "Configuring screensaver"
+
+    cp $FILES_PATH/xfce4/xfce4-terminal.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml > /dev/null 2>&1
+    chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml 2>/dev/null
+	check "Configuring terminal"
+
     # Icons
     info "Configuring icons"
 	cd $FILES_PATH/xfce4 2>/dev/null
