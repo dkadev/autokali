@@ -103,6 +103,20 @@ function customDesktop(){
 
     cd $HOME_PATH
 
+    # Theme
+    git clone https://github.com/rtlewis1/GTK.git > /dev/null 2>&1
+    cd GTK
+    git checkout Material-Black-Colors-Desktop > /dev/null 2>&1
+    check "Cloning Material-Black-Colors-Desktop repository"
+    mkdir -p $HOME_PATH/.themes && cp Material-Black-* $HOME_PATH/.themes -r > /dev/null 2>&1
+    chown -R $USERNAME:$USERNAME $HOME_PATH/.themes 2>/dev/null
+    check "Copying GTK theme ($USERNAME)"
+    mkdir -p /root/.themes && cp Material-Black-* /root/.themes -r > /dev/null 2>&1
+    chown -R root:root /root/.themes 2>/dev/null
+    check "Copying GTK theme (root)"
+    cd $HOME_PATH
+    rm -rf GTK > /dev/null 2>&1
+
     # Desktop
 	info "Configuring desktop"
     cp $FILES_PATH/xfce4/kali-*.jpg /usr/share/backgrounds/ > /dev/null 2>&1
