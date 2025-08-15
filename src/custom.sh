@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-### Terminal customization
+### Desktop customization
 function customDesktop(){
 	section "STARTING SYSTEM CUSTOMIZATION"
 	checkInternet
@@ -9,41 +9,6 @@ function customDesktop(){
 
     # Packages
     info "Installing necessary packages for customization"
-    apt install terminator -y > /dev/null 2>&1
-    check "Installing Terminator"
-
-    apt install fzf -y > /dev/null 2>&1
-    check "Installing fzf"
-
-    if [ "$(uname -m)" = "x86_64" ]; then
-        wget "https://github.com/lsd-rs/lsd/releases/download/v1.1.2/lsd-musl_1.1.2_amd64.deb" -O /tmp/lsd.deb > /dev/null 2>&1
-    elif [ "$(uname -m)" = "aarch64" ]; then
-        wget "https://github.com/lsd-rs/lsd/releases/download/v1.1.2/lsd-musl_1.1.2_arm64.deb" -O /tmp/lsd.deb > /dev/null 2>&1
-    fi
-	dpkg -i /tmp/lsd.deb > /dev/null 2>&1
-	check "Installing lsd"
-
-    if [ "$(uname -m)" = "x86_64" ]; then
-	    wget "https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_amd64.deb" -O /tmp/bat.deb > /dev/null 2>&1
-    elif [ "$(uname -m)" = "aarch64" ]; then
-	    wget "https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_arm64.deb" -O /tmp/bat.deb > /dev/null 2>&1
-    fi
-	dpkg -i /tmp/bat.deb > /dev/null 2>&1
-	check "Installing bat"
-
-    # Install Oh My Zsh
-    info "Installing Oh My Zsh"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended > /dev/null 2>&1
-    check "Installing Oh My Zsh"
-
-    # Set zsh as default shell if not already set
-    info "Setting zsh as default shell"
-    if [ "$SHELL" != "/bin/zsh" ]; then
-        chsh -s /bin/zsh
-        check "Setting zsh as default shell"
-    else
-        info "zsh is already the default shell"
-    fi
 
     # Fonts
 	info "Installing font (Hack Nerd Font)"
@@ -66,7 +31,6 @@ function customDesktop(){
     cd $HOME_PATH/.dotfiles > /dev/null 2>&1
     stow zsh > /dev/null 2>&1
     stow oh-my-zsh > /dev/null 2>&1
-    stow terminator > /dev/null 2>&1
     check "Applying dotfiles"
 
     cd $HOME_PATH
@@ -117,50 +81,6 @@ function customDesktop(){
     cd $HOME_PATH
     rm -rf GTK > /dev/null 2>&1
 
-    # Desktop
-	info "Configuring desktop"
-    cp $FILES_PATH/xfce4/kali-*.jpg /usr/share/backgrounds/ > /dev/null 2>&1
-	check "Downloading kali backgrounds"
-
-	unlink /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
-	ln -s /usr/share/backgrounds/kali-login-ascii.jpg /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
-	check "Configuring login background"
-
-    mv $FILES_PATH/xfce4/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null 2>&1
-    check "Configuring lightdm"
-
-	cp $FILES_PATH/xfce4/xfce4-desktop.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > /dev/null 2>&1
-	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml 2>/dev/null
-	check "Configuring desktop"
-
-	cp $FILES_PATH/xfce4/xfce4-keyboard-shortcuts.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /dev/null 2>&1
-	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml 2>/dev/null
-	check "Configuring keyboard shortcuts"
-
-	cp $FILES_PATH/xfce4/thunar.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml > /dev/null 2>&1
-	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml 2>/dev/null
-	check "Configuring file explorer"
-
-	cp $FILES_PATH/xfce4/xfce4-panel.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml > /dev/null 2>&1
-	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml 2>/dev/null
-	check "Configuring taskbar"
-
-	cp $FILES_PATH/xfce4/xfwm4.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > /dev/null 2>&1
-	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml 2>/dev/null
-	check "Configuring windows"
-
-	cp $FILES_PATH/xfce4/xfce4-power-manager.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > /dev/null 2>&1
-	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml 2>/dev/null
-	check "Configuring power manager"
-
-    cp $FILES_PATH/xfce4/xfce4-screensaver.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml > /dev/null 2>&1
-    chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml 2>/dev/null
-	check "Configuring screensaver"
-
-    cp $FILES_PATH/xfce4/xfce4-terminal.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml > /dev/null 2>&1
-    chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml 2>/dev/null
-	check "Configuring terminal"
-
     # Icons
     info "Configuring icons"
 	cd $FILES_PATH/xfce4 2>/dev/null
@@ -179,6 +99,50 @@ function customDesktop(){
 
 	gtk-update-icon-cache $HOME_PATH/.local/share/icons/Flat-Remix-Black-Dark > /dev/null 2>&1
 	check "Updating icons"
+
+    # XFCE
+	info "Configuring desktop"
+    cp $FILES_PATH/xfce4/kali-*.jpg /usr/share/backgrounds/ > /dev/null 2>&1
+	check "Downloading kali backgrounds"
+
+	unlink /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
+	ln -s /usr/share/backgrounds/kali-login-ascii.jpg /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
+	check "Configuring login background"
+
+    mv $FILES_PATH/xfce4/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null 2>&1
+    check "Configuring lightdm"
+
+	cp $FILES_PATH/xfce4/xfce4-desktop.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml 2>/dev/null
+	check "Configuring xfce4 desktop"
+
+	cp $FILES_PATH/xfce4/xfce4-keyboard-shortcuts.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml 2>/dev/null
+	check "Configuring xfce4 keyboard shortcuts"
+
+	cp $FILES_PATH/xfce4/thunar.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml 2>/dev/null
+	check "Configuring Thunar file explorer"
+
+	cp $FILES_PATH/xfce4/xfce4-panel.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml 2>/dev/null
+	check "Configuring xfce4 taskbar"
+
+	cp $FILES_PATH/xfce4/xfwm4.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml 2>/dev/null
+	check "Configuring xfwm4 windows"
+
+	cp $FILES_PATH/xfce4/xfce4-power-manager.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml > /dev/null 2>&1
+	chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml 2>/dev/null
+	check "Configuring xfce4 power manager"
+
+    cp $FILES_PATH/xfce4/xfce4-screensaver.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml > /dev/null 2>&1
+    chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml 2>/dev/null
+	check "Configuring xfce4 screensaver"
+
+    cp $FILES_PATH/xfce4/xfce4-terminal.xml $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml > /dev/null 2>&1
+    chown -R $USERNAME:$USERNAME $HOME_PATH/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-terminal.xml 2>/dev/null
+	check "Configuring xfce4 terminal"
 
     # Taskbar configuration
     info "Configuring taskbar"
