@@ -217,7 +217,7 @@ function install(){
 	echo -e "\n ${BYellow}⚠ Complete Installation.${Color_Off}\n"
 	validations
 	installPackages
-	installApps
+	installGoTools
 	customDesktop
 	gitTools
 	endInstall
@@ -235,7 +235,7 @@ function installTools(){
 	echo -e "\n ${BYellow}⚠ Installation of third-party applications.${Color_Off}\n"
 	validations
 	installPackages
-	installApps
+	installGoTools
 	gitTools
 	endInstall
 }

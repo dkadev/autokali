@@ -27,19 +27,10 @@ function installPackages(){
 	check "Removing unused packages"
 }
 
-### Installation of other applications
-function installApps(){
-	section "STARTING INSTALLATION OF UTILITIES"
+### Installation of Golang tools
+function installGoTools(){
+	section "STARTING INSTALLATION OF GOLANG TOOLS"
 	checkInternet
-
-	## Installation of packages with pip & pip3
-	for ap in $(cat $PIP_TOOLS_LIST); do
-		info "Installing $(echo $ap | cut -d ':' -f 2)"
-		$(echo $ap | cut -d ':' -f 1) install $(echo $ap | cut -d ':' -f 2) --break-system-packages > /dev/null 2>&1
-		check "Installing $(echo $ap | cut -d ':' -f 2) (root)"
-		sudo -u $USERNAME $(echo $ap | cut -d ':' -f 1) install $(echo $ap | cut -d ':' -f 2) --break-system-packages > /dev/null 2>&1
-		check "Installing $(echo $ap | cut -d ':' -f 2) ($USERNAME)"
-	done
 
 	## Installation of packages with go
 	for ap in $(cat $GO_TOOLS_LIST); do
