@@ -1,19 +1,13 @@
 #!/usr/bin/env bash
 
-### Installation of extra packages
-function installPackages(){
-	section "STARTING TO UPDATE REPOSITORIES"
-	checkInternet
-	info "Downloading other packages"
-	apt install -y $PACKAGES_LIST > /dev/null 2>&1
-	if [ $? -ne 0 ]; then
-		apt update > /dev/null 2>&1
-		apt install -y $PACKAGES_LIST > /dev/null 2>&1
-	fi
-	apt --fix-broken install -y > /dev/null 2>&1
-	check "Installing additional packages"
+function installUtils(){
+    section "STARTING INSTALLATION OF UTILITIES"
+    checkInternet
+
     ## Install pipx and git
+    info "Installing pipx and git"
     apt install pipx git -y > /dev/null 2>&1
+
     ## Install golang
     info "Installing Golang"
     ARCH=$(uname -m)
@@ -29,24 +23,32 @@ function installPackages(){
     GO_TARBALL="${GO_VERSION}.linux-${GO_ARCH}.tar.gz"
     GO_URL="https://go.dev/dl/${GO_TARBALL}"
 
-    cd /tmp
-    wget "$GO_URL" -O "$GO_TARBALL" > /dev/null 2>&1
+    wget "$GO_URL" -O "/tmp/$GO_TARBALL" > /dev/null 2>&1
     rm -rf /usr/local/go
     tar -C /usr/local -xzf "$GO_TARBALL"
     export PATH=$PATH:/usr/local/go/bin
     check "Installing Golang ($GO_VERSION for $GO_ARCH)"
-    
+
     ## Install rust
     info "Installing Rust"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y > /dev/null 2>&1
-	## Update packages
-	info "Updating packages"
-	apt update > /dev/null 2>&1
-	check "Updating packages"
-	## Remove obsolete packages
-	info "Removing unused packages (apt autoremove)"
-	apt autoremove -y > /dev/null 2>&1
-	check "Removing unused packages"
+    check "Installing Rust"
+}
+
+### Installation of extra packages
+function installPackages(){
+	section "STARTING INSTALLATION OF EXTRA PACKAGES"
+    checkInternet
+
+    ## List of packages to install
+	info "Downloading other packages"
+	apt install -y $PACKAGES_LIST > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		apt update > /dev/null 2>&1
+		apt install -y $PACKAGES_LIST > /dev/null 2>&1
+	fi
+	apt --fix-broken install -y > /dev/null 2>&1
+	check "Installing additional packages"
 }
 
 ### Installation of Golang tools
@@ -114,7 +116,7 @@ function gitTools(){
 	check "Adding WordPress Exploit Framework"
 
 
-## Git clone with separate installation
+    ## Git clone with separate installation
 	info "Application directories"
 	mkdir {$PRIVESCLIN_PATH,$PRIVESCWIN_PATH,$OSINT_PATH,$UTILITIES_PATH,$WEB_PATH,$WIFI_PATH,$WORDPRESS_PATH,$AD_PATH} 2>/dev/null
 	check "Creating directories"
@@ -265,7 +267,7 @@ function gitTools(){
 
 
 
-## Download using wget
+    ## Download using wget
 	## psPY
 	info "Downloading pspy"
 	cd $PRIVESCLIN_PATH 2>/dev/null
@@ -502,7 +504,7 @@ function gitTools(){
 	nmap --script-updatedb > /dev/null 2>&1
 	check "Updating additional NSE scripts"
 
-## Download other tools from GitHub without installation
+    ## Download other tools from GitHub without installation
 	for gitap in $(cat $GIT_TOOLS_LIST); do
 		url=$(echo $gitap | cut -d '|' -f2)
 		dir=$(echo $gitap | cut -d '|' -f1)

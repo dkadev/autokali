@@ -216,6 +216,7 @@ function validations(){
 function install(){
 	echo -e "\n ${BYellow}⚠ Complete Installation.${Color_Off}\n"
 	validations
+    installUtils
 	installPackages
 	installGoTools
 	customDesktop
@@ -226,7 +227,7 @@ function install(){
 function installDesktop(){
 	echo -e "\n ${BYellow}⚠ Installation of the Terminal and Desktop customization layer.${Color_Off}\n"
 	validations
-	installPackages
+    installUtils
 	customDesktop
 	endInstall
 }
@@ -234,6 +235,7 @@ function installDesktop(){
 function installTools(){
 	echo -e "\n ${BYellow}⚠ Installation of third-party applications.${Color_Off}\n"
 	validations
+    installUtils
 	installPackages
 	installGoTools
 	gitTools
