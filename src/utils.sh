@@ -14,6 +14,28 @@ function installPackages(){
 	check "Installing additional packages"
     ## Install pipx and git
     apt install pipx git -y > /dev/null 2>&1
+    ## Install golang
+    info "Installing Golang"
+    ARCH=$(uname -m)
+    if [[ "$ARCH" == "x86_64" ]]; then
+        GO_ARCH="amd64"
+    elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
+        GO_ARCH="arm64"
+    else
+        GO_ARCH="$ARCH"
+    fi
+
+    GO_VERSION=$(curl -s https://go.dev/VERSION?m=text | head -n1)
+    GO_TARBALL="${GO_VERSION}.linux-${GO_ARCH}.tar.gz"
+    GO_URL="https://go.dev/dl/${GO_TARBALL}"
+
+    cd /tmp
+    wget "$GO_URL" -O "$GO_TARBALL" > /dev/null 2>&1
+    rm -rf /usr/local/go
+    tar -C /usr/local -xzf "$GO_TARBALL"
+    export PATH=$PATH:/usr/local/go/bin
+    check "Installing Golang ($GO_VERSION for $GO_ARCH)"
+    
     ## Install rust
     info "Installing Rust"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y > /dev/null 2>&1
