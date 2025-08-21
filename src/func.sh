@@ -83,7 +83,7 @@ function ctrl_c(){
 ### Help Panel
 function helpPanel(){
     echo -e "\n${Cyan}[${BYellow}!${Cyan}]${BWhite} Usage:${Color_Off}"
-    echo -e "\n\t${LGreen}./autoDeploy.sh ${LRed}[OPTION]${Color_Off}"
+    echo -e "\n\t${LGreen}./autokali.sh ${LRed}[OPTION]${Color_Off}"
     echo -e "\n${BWhite}OPTIONS:${Color_Off}"
     echo -e "\t${Cyan}[${Red}-i, --install${Cyan}]${Purple} \tComplete installation of the customization layer.${Color_Off}"
     echo -e "\t\t${Yellow}terminal: ${Purple}\tInstallation of terminal and desktop customization only.${Color_Off}"
@@ -91,10 +91,10 @@ function helpPanel(){
     echo -e "\t${Cyan}[${Red}-d, --delete${Cyan}]${Purple} \t\tRemove Desktop configuration and third-party application directories.${Color_Off}"
     echo -e "\t${Cyan}[${Red}-h, --help${Cyan}]${Purple} \t\tShow this help panel.${Color_Off}"
     echo -e "\n${BWhite}EXAMPLES:${Color_Off}"
-    echo -e "\t${LWhite}Complete Installation (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install\n${Color_Off}"
-    echo -e "\t${LWhite}Installation with terminal and desktop customization only (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install ${Yellow}terminal\n${Color_Off}"
-    echo -e "\t${LWhite}Installation with third-party applications only (root)${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}--install ${Yellow}apps\n${Color_Off}"
-    echo -e "\t${LWhite}Remove desktop configuration and application directories${Color_Off}${Green}\n\t# ./autoDeploy.sh ${Red}-d\n${Color_Off}"
+    echo -e "\t${LWhite}Complete Installation (root)${Color_Off}${Green}\n\t# ./autokali.sh ${Red}--install\n${Color_Off}"
+    echo -e "\t${LWhite}Installation with terminal and desktop customization only (root)${Color_Off}${Green}\n\t# ./autokali.sh ${Red}--install ${Yellow}terminal\n${Color_Off}"
+    echo -e "\t${LWhite}Installation with third-party applications only (root)${Color_Off}${Green}\n\t# ./autokali.sh ${Red}--install ${Yellow}apps\n${Color_Off}"
+    echo -e "\t${LWhite}Remove desktop configuration and application directories${Color_Off}${Green}\n\t# ./autokali.sh ${Red}-d\n${Color_Off}"
     tput cnorm; exit 1
 }
 
@@ -191,7 +191,7 @@ function checkInternet(){
 function validations(){
 ### Validation of execution with root
 	if [[ ! -d tools || ! -d files ]]; then
-		echo -e "\n${Cyan}[${BYellow}!${Cyan}] ${BRed}Run this script from the autoDeploy folder to avoid errors${Color_Off}\n"
+		echo -e "\n${Cyan}[${BYellow}!${Cyan}] ${BRed}Run this script from the autokali folder to avoid errors${Color_Off}\n"
 		exit 1
 	fi
 	rm -f $SCRIPT_PATH/error.log 2>/dev/null
