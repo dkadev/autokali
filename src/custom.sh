@@ -13,6 +13,7 @@ function customDesktop(){
     # Catapult
 	info "Installing catapult"
     apt install -y gettext \
+                 make \
                  gir1.2-glib-2.0 \
                  gir1.2-gtk-4.0 \
                  gir1.2-pango-1.0 \
