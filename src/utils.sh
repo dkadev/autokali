@@ -39,15 +39,6 @@ function installUtils(){
     apt install tmux -y > /dev/null 2>&1
     check "Installing tmux"
 
-    # Dotfiles
-    info "Downloading dotfiles"
-    git clone https://github.com/dkadev/dotfiles $HOME_PATH/.dotfiles  > /dev/null 2>&1
-    chown -R $USERNAME:$USERNAME $HOME_PATH/.dotfiles 2>/dev/null
-    check "Cloning dotfiles repository"
-    cd $HOME_PATH/.dotfiles > /dev/null 2>&1
-    ./install.sh > /dev/null 2>&1
-    check "Applying dotfiles"
-
     cd $HOME_PATH
 }
 
