@@ -66,6 +66,7 @@ function customDesktop(){
     # XFCE
 	info "Configuring desktop"
     cp $FILES_PATH/xfce4/*.svg /usr/share/backgrounds/ > /dev/null 2>&1
+    cp $FILES_PATH/xfce4/*.svg /usr/share/images/desktop-base/ > /dev/null 2>&1
 	check "Configuring backgrounds"
 
     mv $FILES_PATH/xfce4/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null 2>&1
