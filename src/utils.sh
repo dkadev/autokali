@@ -25,7 +25,7 @@ function installUtils(){
 
     wget "$GO_URL" -O "/tmp/$GO_TARBALL" > /dev/null 2>&1
     rm -rf /usr/local/go
-    tar -C /usr/local -xzf "$GO_TARBALL"
+    tar -C /usr/local -xzf "/tmp/$GO_TARBALL"
     export PATH=$PATH:/usr/local/go/bin
     check "Installing Golang ($GO_VERSION for $GO_ARCH)"
 
