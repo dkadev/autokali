@@ -65,12 +65,8 @@ function customDesktop(){
 
     # XFCE
 	info "Configuring desktop"
-    cp $FILES_PATH/xfce4/kali-*.jpg /usr/share/backgrounds/ > /dev/null 2>&1
-	check "Downloading kali backgrounds"
-
-	unlink /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
-	ln -s /usr/share/backgrounds/kali-login-ascii.jpg /usr/share/desktop-base/kali-theme/login/background > /dev/null 2>&1
-	check "Configuring login background"
+    cp $FILES_PATH/xfce4/*.svg /usr/share/backgrounds/ > /dev/null 2>&1
+	check "Configuring backgrounds"
 
     mv $FILES_PATH/xfce4/lightdm-gtk-greeter.conf /etc/lightdm/lightdm-gtk-greeter.conf > /dev/null 2>&1
     check "Configuring lightdm"
