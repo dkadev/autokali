@@ -33,6 +33,28 @@ function installUtils(){
     info "Installing Rust"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y > /dev/null 2>&1
     check "Installing Rust"
+
+    ## Install tmux
+    info "Installing tmux"
+    apt install tmux -y > /dev/null 2>&1
+    check "Installing tmux"
+
+    # Dotfiles
+    info "Downloading dotfiles"
+    git clone https://github.com/dkadev/dotfiles $HOME_PATH/.dotfiles  > /dev/null 2>&1
+    chown -R $USERNAME:$USERNAME $HOME_PATH/.dotfiles 2>/dev/null
+    check "Cloning dotfiles repository"
+    cd $HOME_PATH/.dotfiles > /dev/null 2>&1
+    ./install.sh > /dev/null 2>&1
+    apt install stow -y > /dev/null 2>&1
+    check "Installing stow"
+    rm -rf .zshrc > /dev/null 2>&1
+    stow zsh > /dev/null 2>&1
+    stow oh-my-zsh > /dev/null 2>&1
+    stow tmux > /dev/null 2>&1
+    check "Applying dotfiles"
+
+    cd $HOME_PATH
 }
 
 ### Installation of extra packages

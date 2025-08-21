@@ -18,36 +18,6 @@ function customDesktop(){
 	rm Hack.zip 2>/dev/null
 	check "Hack Nerd Font installed"
 
-    cd $HOME_PATH
-
-    # Dotfiles
-    info "Downloading dotfiles"
-    git clone https://github.com/dkadev/dotfiles $HOME_PATH/.dotfiles  > /dev/null 2>&1
-    chown -R $USERNAME:$USERNAME $HOME_PATH/.dotfiles 2>/dev/null
-    check "Cloning dotfiles repository"
-    apt install stow -y > /dev/null 2>&1
-    check "Installing stow"
-    rm -rf .zshrc > /dev/null 2>&1
-    cd $HOME_PATH/.dotfiles > /dev/null 2>&1
-    stow zsh > /dev/null 2>&1
-    stow oh-my-zsh > /dev/null 2>&1
-    check "Applying dotfiles"
-
-    cd $HOME_PATH
-
-    # Powerlevel10k
-    info "Installing powerlevel10k"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME_PATH/.oh-my-zsh/custom}/themes/powerlevel10k > /dev/null 2>&1
-    check "Cloning powerlevel10k repository"
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME_PATH/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null 2>&1
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME_PATH/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting > /dev/null 2>&1
-    check "Installing Oh My Zsh plugins"
-	cp $FILES_PATH/.p10k.zsh $HOME_PATH/.p10k.zsh 2>/dev/null
-    chown $USERNAME:$USERNAME $HOME_PATH/.p10k.zsh 2>/dev/null
-	check "Adding p10k.zsh"
-
-	cd $HOME_PATH
-
     # Catapult
 	info "Installing catapult"
     apt install -y gettext \
