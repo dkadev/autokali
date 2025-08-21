@@ -46,12 +46,6 @@ function installUtils(){
     check "Cloning dotfiles repository"
     cd $HOME_PATH/.dotfiles > /dev/null 2>&1
     ./install.sh > /dev/null 2>&1
-    apt install stow -y > /dev/null 2>&1
-    check "Installing stow"
-    rm -rf .zshrc > /dev/null 2>&1
-    stow zsh > /dev/null 2>&1
-    stow oh-my-zsh > /dev/null 2>&1
-    stow tmux > /dev/null 2>&1
     check "Applying dotfiles"
 
     cd $HOME_PATH
