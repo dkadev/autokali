@@ -10,14 +10,6 @@ function customDesktop(){
     # Packages
     info "Installing necessary packages for customization"
 
-    # Fonts
-	info "Installing font (Hack Nerd Font)"
-	cd /usr/local/share/fonts/ 2>/dev/null
-    cp $FILES_PATH/fonts/Hack.zip /usr/local/share/fonts/ > /dev/null 2>&1
-	unzip -o Hack.zip > /dev/null 2>&1
-	rm Hack.zip 2>/dev/null
-	check "Hack Nerd Font installed"
-
     # Catapult
 	info "Installing catapult"
     apt install -y gettext \
