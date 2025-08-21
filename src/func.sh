@@ -86,13 +86,13 @@ function helpPanel(){
     echo -e "\n\t${LGreen}./autokali.sh ${LRed}[OPTION]${Color_Off}"
     echo -e "\n${BWhite}OPTIONS:${Color_Off}"
     echo -e "\t${Cyan}[${Red}-i, --install${Cyan}]${Purple} \tComplete installation of the customization layer.${Color_Off}"
-    echo -e "\t\t${Yellow}terminal: ${Purple}\tInstallation of terminal and desktop customization only.${Color_Off}"
+    echo -e "\t\t${Yellow}desktop: ${Purple}\tInstallation of desktop customization only.${Color_Off}"
     echo -e "\t\t${Yellow}apps: ${Purple}\t\tInstallation of third-party programs only.${Color_Off}"
     echo -e "\t${Cyan}[${Red}-d, --delete${Cyan}]${Purple} \t\tRemove Desktop configuration and third-party application directories.${Color_Off}"
     echo -e "\t${Cyan}[${Red}-h, --help${Cyan}]${Purple} \t\tShow this help panel.${Color_Off}"
     echo -e "\n${BWhite}EXAMPLES:${Color_Off}"
     echo -e "\t${LWhite}Complete Installation (root)${Color_Off}${Green}\n\t# ./autokali.sh ${Red}--install\n${Color_Off}"
-    echo -e "\t${LWhite}Installation with terminal and desktop customization only (root)${Color_Off}${Green}\n\t# ./autokali.sh ${Red}--install ${Yellow}terminal\n${Color_Off}"
+    echo -e "\t${LWhite}Installation with desktop customization only (root)${Color_Off}${Green}\n\t# ./autokali.sh ${Red}--install ${Yellow}desktop\n${Color_Off}"
     echo -e "\t${LWhite}Installation with third-party applications only (root)${Color_Off}${Green}\n\t# ./autokali.sh ${Red}--install ${Yellow}apps\n${Color_Off}"
     echo -e "\t${LWhite}Remove desktop configuration and application directories${Color_Off}${Green}\n\t# ./autokali.sh ${Red}-d\n${Color_Off}"
     tput cnorm; exit 1
@@ -100,7 +100,7 @@ function helpPanel(){
 
 ### Banner
 function banner(){
-    echo -e "${BRed}"
+    echo -e "${LGreen}"
     sleep 0.15 && echo -e "\t                        █████             █████                ████   ███ "
     sleep 0.15 && echo -e "\t                       ░░███             ░░███                ░░███  ░░░  "
     sleep 0.15 && echo -e "\t   ██████   █████ ████ ███████    ██████  ░███ █████  ██████   ░███  ████ "
@@ -110,6 +110,7 @@ function banner(){
     sleep 0.15 && echo -e "\t ░░████████ ░░████████  ░░█████ ░░██████  ████ █████░░████████ █████ █████"
     sleep 0.15 && echo -e "\t  ░░░░░░░░   ░░░░░░░░    ░░░░░   ░░░░░░  ░░░░ ░░░░░  ░░░░░░░░ ░░░░░ ░░░░░ "
     sleep 0.15 && echo -e "\t                                                                          "
+    sleep 0.15 && echo -e "\t${BWhite}Automated deployment of a custom Offensive Security environment (Debian based)${Color_Off}"
     echo -e "${Color_Off}"
 	tput civis
 }
@@ -225,7 +226,7 @@ function install(){
 }
 
 function installDesktop(){
-	echo -e "\n ${BYellow}⚠ Installation of the Terminal and Desktop customization layer.${Color_Off}\n"
+	echo -e "\n ${BYellow}⚠ Installation of the Desktop customization layer.${Color_Off}\n"
 	validations
     installUtils
 	customDesktop
